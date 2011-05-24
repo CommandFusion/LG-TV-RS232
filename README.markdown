@@ -1,5 +1,8 @@
 # LG TV RS232 Control via CommandFusion 
 
+Developed by Darren Vollmer
+Additional coding by Jarrod Bell
+
 ## Overview
 This project allows for control of LG TV's via RS232 using CommandFusion software and any Serial to Ethernet converter.
 
