@@ -1,0 +1,481 @@
+<gui>
+  <properties>
+    <project>Vollmer iPad</project>
+    <designer>
+    </designer>
+    <size>
+      <portrait width="768" height="1024" />
+      <landscape width="1024" height="768" />
+    </size>
+    <imagefolder>
+    </imagefolder>
+    <debug loaderrors="0" connectionerrors="0" />
+    <devices>
+      <device name="Vollmer iPad">F29E04DDD481E5FED7C5AEC840539BA0</device>
+      <device name="darrens ipad">DA54662E7665827AD08D79EA88B0A4EF</device>
+      <device name="Jarrod's iPhone">693CBC248292EB74D39DF7B0415B25CA</device>
+      <device name="Jarrod's iTouch">A1FDD44DB1F7CCDAA389BD22C9A92466</device>
+      <device name="Jarrod's iPhone 3G">3D0F1EA73558BA41AAE0105C51EDB533</device>
+      <device name="CommandFusion iTouch 3rd Gen">9C9309EA6867A4C87FEB1BC0E8A1A20C</device>
+      <device name="CommandFusion iPad">7FA41088AB80BA09CF10FA579B95C51C</device>
+      <device name="Lisa's iPhone">0D19F0E73C0A5334F0E468234AFEA2BB</device>
+      <device name="SP iPad">F9D64E2B02DC5FA0AE220B3D20A66115</device>
+      <device name="GuiLink iPad">7AE2743F5FB3D11EDAA5A6A2A6A90C04</device>
+      <device name="RFC iPad">B6F88BE7D54D6E8A10EB726C3655FF84</device>
+      <device name="Development iPad #2">F23E70BC8C90C29C94610D9B35F95A88</device>
+      <device name="CommandFusion iPhone 4">5AE0AE1AD7C838CFAE3BA26D23ED0712</device>
+      <device name="CommandFusion Archos5">D5652759DCC69DEC2503149E48959E55</device>
+      <device name="CommandFusion Black iPad2">4A10D1837F75AF1FC608D8C964A47900</device>
+      <device name="CommandFusion White iPad2">A65B95A392D915326B24CC37C7A88537</device>
+    </devices>
+  </properties>
+  <systems>
+    <system name="LG_TV" ip="192.168.2.200" port="4999" protocol="tcp" alwayson="1" accept="0" ssl="0" maxconnections="0" heartbeatRx="" heartbeatTx="" heartbeatMode="0" eom="x" connectionStatus="0" disconnectionStatus="0">
+      <cmd name="setVolume" js="LG_TV.setVolume(data)" jsSendsCommand="True">[sliderval]</cmd>
+      <cmd name="setContrast" js="LG_TV.setContrast(data)" jsSendsCommand="True">[sliderval]</cmd>
+      <cmd name="setBrightness" js="LG_TV.setBrightness(data)" jsSendsCommand="True">[sliderval]</cmd>
+      <cmd name="setColor" js="LG_TV.setColor(data)" jsSendsCommand="True">[sliderval]</cmd>
+      <cmd name="setTint" js="LG_TV.setTint(data)" jsSendsCommand="True">[sliderval]</cmd>
+      <cmd name="setSharpness" js="LG_TV.setSharpness(data)" jsSendsCommand="True">[sliderval]</cmd>
+      <cmd name="setTreble" js="LG_TV.setTreble(data)" jsSendsCommand="True">[sliderval]</cmd>
+      <cmd name="setBass" js="LG_TV.setBass(data)" jsSendsCommand="True">[sliderval]</cmd>
+      <cmd name="setBalance" js="LG_TV.setBalance(data)" jsSendsCommand="True">[sliderval]</cmd>
+      <cmd name="setTemperature" js="LG_TV.setTemperature(data)" jsSendsCommand="True">[sliderval]</cmd>
+      <cmd name="setBacklight" js="LG_TV.setBacklight(data)" jsSendsCommand="True">[sliderval]</cmd>
+      <fb name="LG_Feedback" regex="(?msi)(.*)">
+        <group index="1" name="Debug" datatype="s" target="s220" />
+      </fb>
+    </system>
+  </systems>
+  <themes>
+    <theme type="background" name=".Stainless_Steel"><![CDATA[background-color: #2E2E2E; background-image: url(Images\Background6.jpg); background-repeat: no-repeat;]]></theme>
+    <theme type="gauge" name=".gauge_horiz_short[state='0']"><![CDATA[ background-image: url(Images\gauge-horiz-short-back.png);]]></theme>
+    <theme type="gauge" name=".gauge_horiz_short[state='1']"><![CDATA[ background-image: url(Images\gauge-horiz-short-ind.png);]]></theme>
+    <theme type="button" name=".opaque[state='0']"><![CDATA[padding: 0px 0px 0px 2px;  filter: Alpha(Opacity=60); -moz-opacity:0.6; opacity: 0.6; background-color: #000000; color: White; font-size: 12px; font-family: 'Arial'; font-weight: normal; font-style: none; text-decoration: none; text-align: center; vertical-align: middle; display: table-cell; box-sizing: border-box; -webkit-box-sizing: border-box; -webkit-tap-highlight-color:rgba(0,0,0,0);]]></theme>
+    <theme type="button" name=".opaque[state='1']"><![CDATA[padding: 0px 0px 0px 2px; color: White; font-size: 12px; font-family: 'Verdana'; font-weight: normal; font-style: none; text-decoration: none; text-align: center; vertical-align: middle; display: table-cell; box-sizing: border-box; -webkit-box-sizing: border-box; -webkit-tap-highlight-color:rgba(0,0,0,0);]]></theme>
+    <theme type="text" name=".LCD"><![CDATA[ text-shadow: rgba(0,0,0,0.39) 3px 3px 3px; color: White; font-size: 12px; font-family: 'Arial'; text-align: center; vertical-align: middle; font-weight: bold; font-style: none; text-decoration: none; display: table-cell;]]></theme>
+    <theme type="button" name=".white[state='0']"><![CDATA[padding: 0px 0px 0px 2px;  filter: Alpha(Opacity=100); -moz-opacity:1; opacity: 1; background-color: White; color: Black; font-size: 14px; font-family: 'Arial'; font-weight: bold; font-style: none; text-decoration: none; text-align: left; vertical-align: middle; display: table-cell; box-sizing: border-box; -webkit-box-sizing: border-box; -webkit-tap-highlight-color:rgba(0,0,0,0);]]></theme>
+    <theme type="button" name=".white[state='1']"><![CDATA[padding: 0px 0px 0px 2px;  filter: Alpha(Opacity=32); -moz-opacity:0.32; opacity: 0.32; background-color: Black; color: White; font-size: 14px; font-family: 'Arial'; font-weight: normal; font-style: none; text-decoration: none; text-align: left; vertical-align: middle; display: table-cell; box-sizing: border-box; -webkit-box-sizing: border-box; -webkit-tap-highlight-color:rgba(0,0,0,0);]]></theme>
+    <theme type="text" name=".White12ptCentered"><![CDATA[ color: White; font-size: 12px; font-family: 'Arial'; text-align: center; vertical-align: middle; font-weight: normal; font-style: none; text-decoration: none; display: table-cell;]]></theme>
+    <theme type="text" name=".Black12ptLeft"><![CDATA[ color: White; font-size: 12px; font-family: 'Arial'; text-align: left; vertical-align: middle; font-weight: normal; font-style: none; text-decoration: none; display: table-cell;]]></theme>
+  </themes>
+  <tokens>
+    <token name="LGTV_JOIN" value="1" />
+  </tokens>
+  <scripts>
+    <script name="LG_TV.js" />
+  </scripts>
+  <page name="A_HOME" j="0" transition="None" subtype="None" time="0" ease="" start="1">
+    <portrait />
+    <landscape t="Stainless_Steel">
+      <img x="758" y="0" w="266" h="590" j="0" clickthrough="0" refresh="0" l="1" noCache="0" downloadIndicator="0" clearOnURLChange="0">Images\opaque60.png</img>
+      <img x="277" y="0" w="477" h="768" j="0" clickthrough="0" refresh="0" l="1" noCache="0" downloadIndicator="0" clearOnURLChange="0">Images\opaque60.png</img>
+      <img x="0" y="0" w="269" h="768" j="0" clickthrough="0" refresh="0" l="1" noCache="0" downloadIndicator="0" clearOnURLChange="0">Images\opaque60.png</img>
+      <btn j="86" x="299" y="463" w="145" h="20" t="white" flip="None" sim="0" l="1" s="1" js="LG_TV.setPowerSave('max')">
+        <inactive s="0">Energy Max</inactive>
+        <active s="0">Energy Max</active>
+      </btn>
+      <btn j="84" x="299" y="421" w="145" h="20" t="white" flip="None" sim="0" l="1" s="1" js="LG_TV.setPowerSave('min')">
+        <inactive s="0">Energy Min</inactive>
+        <active s="0">Energy Min</active>
+      </btn>
+      <btn j="85" x="299" y="442" w="145" h="20" t="white" flip="None" sim="0" l="1" s="1" js="LG_TV.setPowerSave('mid')">
+        <inactive s="0">Energy Mid</inactive>
+        <active s="0">Energy Mid</active>
+      </btn>
+      <btn j="87" x="299" y="484" w="145" h="20" t="white" flip="None" sim="0" l="1" s="1" js="LG_TV.setPowerSave('auto')">
+        <inactive s="0">Energy Auto</inactive>
+        <active s="0">Energy Auto</active>
+      </btn>
+      <btn j="83" x="299" y="400" w="145" h="20" t="white" flip="None" sim="0" l="1" s="1" js="LG_TV.setPowerSave('off')">
+        <inactive s="0">Energy Off</inactive>
+        <active s="0">Energy Off</active>
+      </btn>
+      <btn j="88" x="299" y="505" w="145" h="20" t="white" flip="None" sim="0" l="1" s="1" js="LG_TV.setPowerSave('screenoff')">
+        <inactive s="0">Energy ScreenOff</inactive>
+        <active s="0">Energy ScreenOff</active>
+      </btn>
+      <slider j="11" d="0" x="764" y="538" w="251" h="32" min="0" max="100" decimals="0" pressCmd="setBacklight" dragCmd="setBacklight" releaseCmd="setBacklight" unit="decimal" t="gauge_horiz_short" sim="1" l="1" />
+      <txt j="0" x="852" y="304" w="75" h="20" t="White12ptCentered" wrap="False" l="1">Sharpness</txt>
+      <txt j="0" x="852" y="356" w="75" h="20" t="White12ptCentered" wrap="False" l="1">Treble</txt>
+      <txt j="0" x="852" y="409" w="75" h="20" t="White12ptCentered" wrap="False" l="1">Bass</txt>
+      <txt j="0" x="852" y="462" w="75" h="20" t="White12ptCentered" wrap="False" l="1">Balance</txt>
+      <txt j="0" x="852" y="93" w="75" h="20" t="White12ptCentered" wrap="False" l="1">Contrast</txt>
+      <txt j="0" x="852" y="145" w="75" h="20" t="White12ptCentered" wrap="False" l="1">Brightness</txt>
+      <txt j="0" x="852" y="198" w="75" h="20" t="White12ptCentered" wrap="False" l="1">Color</txt>
+      <txt j="0" x="852" y="251" w="75" h="20" t="White12ptCentered" wrap="False" l="1">Tint</txt>
+      <txt j="0" x="853" y="514" w="75" h="20" t="White12ptCentered" wrap="False" l="1">Temperature</txt>
+      <txt j="0" x="853" y="567" w="75" h="20" t="White12ptCentered" wrap="False" l="1">Backlight</txt>
+      <slider j="6" d="0" x="764" y="273" w="251" h="32" min="0" max="100" decimals="0" pressCmd="setSharpness" dragCmd="setSharpness" releaseCmd="setSharpness" unit="decimal" t="gauge_horiz_short" sim="1" l="1" />
+      <slider j="7" d="0" x="764" y="326" w="251" h="32" min="0" max="100" decimals="0" pressCmd="setTreble" dragCmd="setTreble" releaseCmd="setTreble" unit="decimal" t="gauge_horiz_short" sim="1" l="1" />
+      <slider j="8" d="0" x="764" y="379" w="251" h="32" min="0" max="100" decimals="0" pressCmd="setBass" dragCmd="setBass" releaseCmd="setBass" unit="decimal" t="gauge_horiz_short" sim="1" l="1" />
+      <slider j="9" d="0" x="764" y="432" w="251" h="32" min="0" max="100" decimals="0" pressCmd="setBalance" dragCmd="setBalance" releaseCmd="setBalance" unit="decimal" t="gauge_horiz_short" sim="1" l="1" />
+      <slider j="2" d="0" x="764" y="62" w="251" h="32" min="0" max="100" decimals="0" pressCmd="setContrast" dragCmd="setContrast" releaseCmd="setContrast" unit="decimal" t="gauge_horiz_short" sim="1" l="1" />
+      <slider j="3" d="0" x="764" y="115" w="251" h="32" min="0" max="100" decimals="0" pressCmd="setBrightness" dragCmd="setBrightness" releaseCmd="setBrightness" unit="decimal" t="gauge_horiz_short" sim="1" l="1" />
+      <slider j="4" d="0" x="764" y="168" w="251" h="32" min="0" max="100" decimals="0" pressCmd="setColor" dragCmd="setColor" releaseCmd="setColor" unit="decimal" t="gauge_horiz_short" sim="1" l="1" />
+      <slider j="5" d="0" x="764" y="220" w="251" h="32" min="0" max="100" decimals="0" pressCmd="setTint" dragCmd="setTint" releaseCmd="setTint" unit="decimal" t="gauge_horiz_short" sim="1" l="1" />
+      <slider j="10" d="0" x="764" y="485" w="251" h="32" min="0" max="100" decimals="0" pressCmd="setTemperature" dragCmd="setTemperature" unit="decimal" t="gauge_horiz_short" sim="1" l="1" />
+      <slider j="1" d="0" x="764" y="9" w="251" h="32" min="0" max="100" decimals="0" pressCmd="setVolume" dragCmd="setVolume" releaseCmd="setVolume" unit="decimal" t="gauge_horiz_short" sim="1" l="1" />
+      <txt j="0" x="852" y="40" w="75" h="20" t="White12ptCentered" wrap="False" l="1">Volume</txt>
+      <btn j="93" x="299" y="652" w="145" h="20" t="white" flip="None" sim="0" l="1" s="1" js="LG_TV.setScreenMute('off')">
+        <inactive s="0">Screen Mute Off</inactive>
+        <active s="0">Screen Mute Off</active>
+      </btn>
+      <btn j="92" x="299" y="631" w="145" h="20" t="white" flip="None" sim="0" l="1" s="1" js="LG_TV.setScreenMute('on')">
+        <inactive s="0">Screen Mute On</inactive>
+        <active s="0">Screen Mute On</active>
+      </btn>
+      <btn j="91" x="299" y="610" w="145" h="20" t="white" flip="None" sim="0" l="1" s="1" js="LG_TV.setScreenMute('video')">
+        <inactive s="0">Video Mute</inactive>
+        <active s="0">Video Mute</active>
+      </btn>
+      <btn j="89" x="299" y="547" w="145" h="20" t="white" flip="None" sim="0" l="1" s="1" js="LG_TV.setRemoteLock('on')">
+        <inactive s="0">RemoteLock On</inactive>
+        <active s="0">RemoteLock On</active>
+      </btn>
+      <btn j="90" x="299" y="568" w="145" h="20" t="white" flip="None" sim="0" l="1" s="1" js="LG_TV.setRemoteLock('off')">
+        <inactive s="0">RemoteLock Off</inactive>
+        <active s="0">RemoteLock Off</active>
+      </btn>
+      <txt j="220" x="127" y="741" w="130" h="25" t="LCD" wrap="False" l="0">FEEDBACK</txt>
+      <btn j="68" x="299" y="43" w="145" h="20" t="white" flip="None" sim="0" l="1" s="1" js="LG_TV.setInput('dtv antenna')">
+        <inactive s="0">DTV ANTENNA</inactive>
+        <active s="0">DTV ANTENNA</active>
+      </btn>
+      <btn j="69" x="299" y="64" w="145" h="20" t="white" flip="None" sim="0" l="1" s="1" js="LG_TV.setInput('dtv cable')">
+        <inactive s="0">DTV CABLE</inactive>
+        <active s="0">DTV CABLE</active>
+      </btn>
+      <btn j="70" x="299" y="85" w="145" h="20" t="white" flip="None" sim="0" l="1" s="1" js="LG_TV.setInput('analog antenna')">
+        <inactive s="0">ANALOG ANTENNA</inactive>
+        <active s="0">ANALOG ANTENNA</active>
+      </btn>
+      <btn j="71" x="299" y="106" w="145" h="20" t="white" flip="None" sim="0" l="1" s="1" js="LG_TV.setInput('analog cable')">
+        <inactive s="0">ANALOG CABLE</inactive>
+        <active s="0">ANALOG CABLE</active>
+      </btn>
+      <btn j="72" x="299" y="127" w="145" h="20" t="white" flip="None" sim="0" l="1" s="1" js="LG_TV.setInput('av 1')">
+        <inactive s="0">AV 1</inactive>
+        <active s="0">AV 1</active>
+      </btn>
+      <btn j="73" x="299" y="148" w="145" h="20" t="white" flip="None" sim="0" l="1" s="1" js="LG_TV.setInput('av 2')">
+        <inactive s="0">AV 2</inactive>
+        <active s="0">AV 2</active>
+      </btn>
+      <btn j="74" x="299" y="169" w="145" h="20" t="white" flip="None" sim="0" l="1" s="1" js="LG_TV.setInput('component 1')">
+        <inactive s="0">COMPONENT 1</inactive>
+        <active s="0">COMPONENT 1</active>
+      </btn>
+      <btn j="75" x="299" y="190" w="145" h="20" t="white" flip="None" sim="0" l="1" s="1" js="LG_TV.setInput('component 1')">
+        <inactive s="0">COMPONENT 2</inactive>
+        <active s="0">COMPONENT 2</active>
+      </btn>
+      <btn j="77" x="299" y="232" w="145" h="20" t="white" flip="None" sim="0" l="1" s="1" js="LG_TV.setInput('hdmi 1')">
+        <inactive s="0">HDMI 1</inactive>
+        <active s="0">HDMI 1</active>
+      </btn>
+      <btn j="76" x="299" y="211" w="145" h="20" t="white" flip="None" sim="0" l="1" s="1" js="LG_TV.setInput('rgb pc')">
+        <inactive s="0">RGB PC</inactive>
+        <active s="0">RGB PC</active>
+      </btn>
+      <btn j="78" x="299" y="253" w="145" h="20" t="white" flip="None" sim="0" l="1" s="1" js="LG_TV.setInput('hdmi 2')">
+        <inactive s="0">HDMI 2</inactive>
+        <active s="0">HDMI 2</active>
+      </btn>
+      <btn j="79" x="299" y="274" w="145" h="20" t="white" flip="None" sim="0" l="1" s="1" js="LG_TV.setInput('hdmi 3')">
+        <inactive s="0">HDMI 3</inactive>
+        <active s="0">HDMI 3</active>
+      </btn>
+      <txt j="0" x="281" y="17" w="466" h="22" t="White12ptCentered" wrap="False" l="1">RS232 COMMANDS</txt>
+      <btn j="1" x="12" y="45" w="106" h="20" t="white" flip="None" sim="1" l="1" s="1" js="LG_TV.sendIR('channel up')" repeatdelay="500">
+        <inactive s="0">Channel Up</inactive>
+        <active s="0">Channel Up</active>
+      </btn>
+      <btn j="2" x="12" y="66" w="106" h="20" t="white" flip="None" sim="1" l="1" s="1" js="LG_TV.sendIR('channel down')" repeatdelay="500">
+        <inactive s="0">Channel Down</inactive>
+        <active s="0">Channel Down</active>
+      </btn>
+      <btn j="4" x="12" y="108" w="106" h="20" t="white" flip="None" sim="1" l="1" s="1" js="LG_TV.sendIR('volume down')">
+        <inactive s="0">Volume Down</inactive>
+        <active s="0">Volume Down</active>
+      </btn>
+      <btn j="6" x="12" y="150" w="106" h="20" t="white" flip="None" sim="1" l="1" s="1" js="LG_TV.sendIR('mute/delete')">
+        <inactive s="0">Mute / Delete</inactive>
+        <active s="0">Mute / Delete</active>
+      </btn>
+      <btn j="3" x="12" y="87" w="106" h="20" t="white" flip="None" sim="1" l="1" s="1" js="LG_TV.sendIR('volume up')" repeatdelay="100">
+        <inactive s="0">Volume Up</inactive>
+        <active s="0">Volume Up</active>
+      </btn>
+      <btn j="5" x="12" y="129" w="106" h="20" t="white" flip="None" sim="1" l="1" s="1" js="LG_TV.sendIR('power toggle')">
+        <inactive s="0">Power Toggle</inactive>
+        <active s="0">Power Toggle</active>
+      </btn>
+      <btn j="7" x="12" y="171" w="106" h="20" t="white" flip="None" sim="1" l="1" s="1" js="LG_TV.sendIR('input toggle')">
+        <inactive s="0">Input Toggle</inactive>
+        <active s="0">Input Toggle</active>
+      </btn>
+      <btn j="8" x="12" y="192" w="106" h="20" t="white" flip="None" sim="1" l="1" s="1" js="LG_TV.sendIR('tv')">
+        <inactive s="0">TV</inactive>
+        <active s="0">TV</active>
+      </btn>
+      <btn j="9" x="12" y="213" w="106" h="20" t="white" flip="None" sim="1" l="1" s="1" js="LG_TV.sendIR('0')">
+        <inactive s="0">0</inactive>
+        <active s="0">0</active>
+      </btn>
+      <btn j="10" x="12" y="234" w="106" h="20" t="white" flip="None" sim="1" l="1" s="1" js="LG_TV.sendIR('1')">
+        <inactive s="0">1</inactive>
+        <active s="0">1</active>
+      </btn>
+      <btn j="11" x="12" y="255" w="106" h="20" t="white" flip="None" sim="1" l="1" s="1" js="LG_TV.sendIR('2')">
+        <inactive s="0">2</inactive>
+        <active s="0">2</active>
+      </btn>
+      <btn j="12" x="12" y="276" w="106" h="20" t="white" flip="None" sim="1" l="1" s="1" js="LG_TV.sendIR('3')">
+        <inactive s="0">3</inactive>
+        <active s="0">3</active>
+      </btn>
+      <btn j="13" x="12" y="297" w="106" h="20" t="white" flip="None" sim="1" l="1" s="1" js="LG_TV.sendIR('4')">
+        <inactive s="0">4</inactive>
+        <active s="0">4</active>
+      </btn>
+      <btn j="14" x="12" y="318" w="106" h="20" t="white" flip="None" sim="1" l="1" s="1" js="LG_TV.sendIR('5')">
+        <inactive s="0">5</inactive>
+        <active s="0">5</active>
+      </btn>
+      <btn j="15" x="12" y="339" w="106" h="20" t="white" flip="None" sim="1" l="1" s="1" js="LG_TV.sendIR('6')">
+        <inactive s="0">6</inactive>
+        <active s="0">6</active>
+      </btn>
+      <btn j="16" x="12" y="360" w="106" h="20" t="white" flip="None" sim="1" l="1" s="1" js="LG_TV.sendIR('7')">
+        <inactive s="0">7</inactive>
+        <active s="0">7</active>
+      </btn>
+      <btn j="17" x="12" y="381" w="106" h="20" t="white" flip="None" sim="1" l="1" s="1" js="LG_TV.sendIR('8')">
+        <inactive s="0">8</inactive>
+        <active s="0">8</active>
+      </btn>
+      <btn j="18" x="12" y="402" w="106" h="20" t="white" flip="None" sim="1" l="1" s="1" js="LG_TV.sendIR('9')">
+        <inactive s="0">9</inactive>
+        <active s="0">9</active>
+      </btn>
+      <btn j="19" x="12" y="423" w="106" h="20" t="white" flip="None" sim="1" l="1" s="1" js="LG_TV.sendIR('flashback')">
+        <inactive s="0">Flashback</inactive>
+        <active s="0">Flashback</active>
+      </btn>
+      <btn j="20" x="12" y="444" w="106" h="20" t="white" flip="None" sim="1" l="1" s="1" js="LG_TV.sendIR('favorite/mark')">
+        <inactive s="0">Favorite / Mark</inactive>
+        <active s="0">Favorite / Mark</active>
+      </btn>
+      <btn j="21" x="12" y="465" w="106" h="20" t="white" flip="None" sim="1" l="1" s="1" js="LG_TV.sendIR('back')">
+        <inactive s="0">Back</inactive>
+        <active s="0">Back</active>
+      </btn>
+      <btn j="22" x="12" y="486" w="106" h="20" t="white" flip="None" sim="1" l="1" s="1" js="LG_TV.sendIR('av mode')">
+        <inactive s="0">AV Mode</inactive>
+        <active s="0">AV Mode</active>
+      </btn>
+      <btn j="23" x="12" y="507" w="106" h="20" t="white" flip="None" sim="1" l="1" s="1" js="LG_TV.sendIR('up')">
+        <inactive s="0">Up</inactive>
+        <active s="0">Up</active>
+      </btn>
+      <btn j="25" x="12" y="549" w="106" h="20" t="white" flip="None" sim="1" l="1" s="1" js="LG_TV.sendIR('right')">
+        <inactive s="0">Right</inactive>
+        <active s="0">Right</active>
+      </btn>
+      <btn j="27" x="12" y="591" w="106" h="20" t="white" flip="None" sim="1" l="1" s="1" js="LG_TV.sendIR('menu')">
+        <inactive s="0">Menu</inactive>
+        <active s="0">Menu</active>
+      </btn>
+      <btn j="24" x="12" y="528" w="106" h="20" t="white" flip="None" sim="1" l="1" s="1" js="LG_TV.sendIR('down')">
+        <inactive s="0">Down</inactive>
+        <active s="0">Down</active>
+      </btn>
+      <btn j="26" x="12" y="570" w="106" h="20" t="white" flip="None" sim="1" l="1" s="1" js="LG_TV.sendIR('left')">
+        <inactive s="0">Left</inactive>
+        <active s="0">Left</active>
+      </btn>
+      <btn j="28" x="12" y="612" w="106" h="20" t="white" flip="None" sim="1" l="1" s="1" js="LG_TV.sendIR('enter')">
+        <inactive s="0">Enter</inactive>
+        <active s="0">Enter</active>
+      </btn>
+      <btn j="29" x="12" y="633" w="106" h="20" t="white" flip="None" sim="1" l="1" s="1" js="LG_TV.sendIR('q menu')">
+        <inactive s="0">Q Menu</inactive>
+        <active s="0">Q Menu</active>
+      </btn>
+      <btn j="30" x="12" y="654" w="106" h="20" t="white" flip="None" sim="1" l="1" s="1" js="LG_TV.sendIR('-')">
+        <inactive s="0">- / dash</inactive>
+        <active s="0">- / dash</active>
+      </btn>
+      <btn j="31" x="12" y="675" w="106" h="20" t="white" flip="None" sim="1" l="1" s="1" js="LG_TV.sendIR('list')">
+        <inactive s="0">List</inactive>
+        <active s="0">List</active>
+      </btn>
+      <btn j="32" x="12" y="696" w="106" h="20" t="white" flip="None" sim="1" l="1" s="1" js="LG_TV.sendIR('exit')">
+        <inactive s="0">Exit</inactive>
+        <active s="0">Exit</active>
+      </btn>
+      <btn j="33" x="12" y="717" w="106" h="20" t="white" flip="None" sim="1" l="1" s="1" js="LG_TV.sendIR('widgets')">
+        <inactive s="0">Widgets</inactive>
+        <active s="0">Widgets</active>
+      </btn>
+      <btn j="34" x="12" y="738" w="106" h="20" t="white" flip="None" sim="1" l="1" s="1" js="LG_TV.sendIR('netcast')">
+        <inactive s="0">Netcast</inactive>
+        <active s="0">Netcast</active>
+      </btn>
+      <btn j="35" x="125" y="45" w="132" h="20" t="white" flip="None" sim="1" l="1" s="1" js="LG_TV.sendIR('blue')">
+        <inactive s="0">Blue</inactive>
+        <active s="0">Blue</active>
+      </btn>
+      <btn j="36" x="125" y="66" w="132" h="20" t="white" flip="None" sim="1" l="1" s="1" js="LG_TV.sendIR('yellow')">
+        <inactive s="0">Yellow</inactive>
+        <active s="0">Yellow</active>
+      </btn>
+      <btn j="37" x="125" y="87" w="132" h="20" t="white" flip="None" sim="1" l="1" s="1" js="LG_TV.sendIR('green')">
+        <inactive s="0">Green</inactive>
+        <active s="0">Green</active>
+      </btn>
+      <btn j="38" x="125" y="108" w="132" h="20" t="white" flip="None" sim="1" l="1" s="1" js="LG_TV.sendIR('red')">
+        <inactive s="0">Red</inactive>
+        <active s="0">Red</active>
+      </btn>
+      <btn j="39" x="125" y="129" w="132" h="20" t="white" flip="None" sim="1" l="1" s="1" js="LG_TV.sendIR('ratio toggle')">
+        <inactive s="0">Ratio Toggle</inactive>
+        <active s="0">Ratio Toggle</active>
+      </btn>
+      <btn j="40" x="125" y="150" w="132" h="20" t="white" flip="None" sim="1" l="1" s="1" js="LG_TV.sendIR('simplink')">
+        <inactive s="0">Simplink</inactive>
+        <active s="0">Simplink</active>
+      </btn>
+      <btn j="41" x="125" y="171" w="132" h="20" t="white" flip="None" sim="1" l="1" s="1" js="LG_TV.sendIR('forward')">
+        <inactive s="0">Forward</inactive>
+        <active s="0">Forward</active>
+      </btn>
+      <btn j="42" x="125" y="192" w="132" h="20" t="white" flip="None" sim="1" l="1" s="1" js="LG_TV.sendIR('rewind')">
+        <inactive s="0">Rewind</inactive>
+        <active s="0">Rewind</active>
+      </btn>
+      <btn j="43" x="125" y="213" w="132" h="20" t="white" flip="None" sim="1" l="1" s="1" js="LG_TV.sendIR('energy saving')">
+        <inactive s="0">Energy Saving</inactive>
+        <active s="0">Energy Saving</active>
+      </btn>
+      <btn j="44" x="125" y="234" w="132" h="20" t="white" flip="None" sim="1" l="1" s="1" js="LG_TV.sendIR('info')">
+        <inactive s="0">Info</inactive>
+        <active s="0">Info</active>
+      </btn>
+      <btn j="46" x="125" y="276" w="132" h="20" t="white" flip="None" sim="1" l="1" s="1" js="LG_TV.sendIR('stop')">
+        <inactive s="0">Stop</inactive>
+        <active s="0">Stop</active>
+      </btn>
+      <btn j="48" x="125" y="318" w="132" h="20" t="white" flip="None" sim="1" l="1" s="1" js="LG_TV.sendIR('input tv')">
+        <inactive s="0">Input TV</inactive>
+        <active s="0">Input TV</active>
+      </btn>
+      <btn j="45" x="125" y="255" w="132" h="20" t="white" flip="None" sim="1" l="1" s="1" js="LG_TV.sendIR('play')">
+        <inactive s="0">Play</inactive>
+        <active s="0">Play</active>
+      </btn>
+      <btn j="47" x="125" y="297" w="132" h="20" t="white" flip="None" sim="1" l="1" s="1" js="LG_TV.sendIR('pause')">
+        <inactive s="0">Pause</inactive>
+        <active s="0">Pause</active>
+      </btn>
+      <btn j="49" x="125" y="339" w="132" h="20" t="white" flip="None" sim="1" l="1" s="1" js="LG_TV.sendIR('power on')">
+        <inactive s="0">Power On</inactive>
+        <active s="0">Power On</active>
+      </btn>
+      <btn j="50" x="125" y="360" w="132" h="20" t="white" flip="None" sim="1" l="1" s="1" js="LG_TV.sendIR('power off')">
+        <inactive s="0">Power Off</inactive>
+        <active s="0">Power Off</active>
+      </btn>
+      <btn j="51" x="125" y="381" w="132" h="20" t="white" flip="None" sim="1" l="1" s="1" js="LG_TV.sendIR('input av1')">
+        <inactive s="0">Input AV1</inactive>
+        <active s="0">Input AV1</active>
+      </btn>
+      <btn j="52" x="125" y="402" w="132" h="20" t="white" flip="None" sim="1" l="1" s="1" js="LG_TV.sendIR('input av2')">
+        <inactive s="0">Input AV2</inactive>
+        <active s="0">Input AV2</active>
+      </btn>
+      <btn j="53" x="125" y="423" w="132" h="20" t="white" flip="None" sim="1" l="1" s="1" js="LG_TV.sendIR('input component1')">
+        <inactive s="0">Input Component 1</inactive>
+        <active s="0">Input Component 1</active>
+      </btn>
+      <btn j="54" x="125" y="444" w="132" h="20" t="white" flip="None" sim="1" l="1" s="1" js="LG_TV.sendIR('input component2')">
+        <inactive s="0">Input Component2</inactive>
+        <active s="0">Input Component2</active>
+      </btn>
+      <btn j="55" x="125" y="465" w="132" h="20" t="white" flip="None" sim="1" l="1" s="1" js="LG_TV.sendIR('input rgbpc')">
+        <inactive s="0">Input RGB/PC</inactive>
+        <active s="0">Input RGB/PC</active>
+      </btn>
+      <btn j="57" x="125" y="507" w="132" h="20" t="white" flip="None" sim="1" l="1" s="1" js="LG_TV.sendIR('input hdmi2')">
+        <inactive s="0">Input HDMI2</inactive>
+        <active s="0">Input HDMI2</active>
+      </btn>
+      <btn j="58" x="125" y="528" w="132" h="20" t="white" flip="None" sim="1" l="1" s="1" js="LG_TV.sendIR('input hdmi3')">
+        <inactive s="0">Input HDMI3</inactive>
+        <active s="0">Input HDMI3</active>
+      </btn>
+      <btn j="59" x="125" y="549" w="132" h="20" t="white" flip="None" sim="1" l="1" s="1" js="LG_TV.sendIR('input hdmi4')">
+        <inactive s="0">Input HDMI4</inactive>
+        <active s="0">Input HDMI4</active>
+      </btn>
+      <btn j="60" x="125" y="570" w="132" h="20" t="white" flip="None" sim="1" l="1" s="1" js="LG_TV.sendIR('ratio 4:3')">
+        <inactive s="0">Ratio 4:3</inactive>
+        <active s="0">Ratio 4:3</active>
+      </btn>
+      <btn j="61" x="125" y="591" w="132" h="20" t="white" flip="None" sim="1" l="1" s="1" js="LG_TV.sendIR('ratio 16:9')">
+        <inactive s="0">Ratio 16:9</inactive>
+        <active s="0">Ratio 16:9</active>
+      </btn>
+      <btn j="62" x="125" y="612" w="132" h="20" t="white" flip="None" sim="1" l="1" s="1" js="LG_TV.sendIR('Zoom')">
+        <inactive s="0">Zoom</inactive>
+        <active s="0">Zoom</active>
+      </btn>
+      <btn j="63" x="125" y="633" w="132" h="20" t="white" flip="None" sim="1" l="1" s="1" js="LG_TV.sendIR('3d')">
+        <inactive s="0">3D</inactive>
+        <active s="0">3D</active>
+      </btn>
+      <btn j="64" x="125" y="654" w="132" h="20" t="white" flip="None" sim="1" l="1" s="1" js="LG_TV.sendIR('Guide')">
+        <inactive s="0">Guide</inactive>
+        <active s="0">Guide</active>
+      </btn>
+      <btn j="65" x="125" y="675" w="132" h="20" t="white" flip="None" sim="1" l="1" s="1" js="LG_TV.sendIR('text')">
+        <inactive s="0">Text</inactive>
+        <active s="0">Text</active>
+      </btn>
+      <btn j="66" x="125" y="696" w="132" h="20" t="white" flip="None" sim="1" l="1" s="1" js="LG_TV.sendIR('toption')">
+        <inactive s="0">TOption</inactive>
+        <active s="0">TOption</active>
+      </btn>
+      <btn j="67" x="125" y="717" w="132" h="20" t="white" flip="None" sim="1" l="1" s="1" js="LG_TV.sendIR('subtitle')">
+        <inactive s="0">Subtitle</inactive>
+        <active s="0">Subtitle</active>
+      </btn>
+      <txt j="0" x="13" y="17" w="243" h="22" t="White12ptCentered" wrap="False" l="1">INFRARED / REMOTE BUTTONS</txt>
+      <btn j="56" x="125" y="486" w="132" h="20" t="white" flip="None" sim="1" l="1" s="1" js="LG_TV.sendIR('input hdmi1')">
+        <inactive s="0">Input HDMI1</inactive>
+        <active s="0">Input HDMI1</active>
+      </btn>
+      <btn j="82" x="299" y="358" w="145" h="20" t="white" flip="None" sim="0" l="1" s="1" js="LG_TV.setPower('Off')">
+        <inactive s="0">Power Off</inactive>
+        <active s="0">Power Off</active>
+      </btn>
+      <btn j="81" x="299" y="337" w="145" h="20" t="white" flip="None" sim="0" l="1" s="1" js="LG_TV.setPower('On')">
+        <inactive s="0">Power On</inactive>
+        <active s="0">Power On</active>
+      </btn>
+      <btn j="80" x="299" y="295" w="145" h="20" t="white" flip="None" sim="0" l="1" s="1" js="LG_TV.setInput('hdmi 4')">
+        <inactive s="0">HDMI 4</inactive>
+        <active s="0">HDMI 4</active>
+      </btn>
+      <btn j="94" x="299" y="696" w="145" h="20" t="white" flip="None" sim="0" l="1" s="1" js="LG_TV.setMute('off')">
+        <inactive s="0">MUTE OFF</inactive>
+        <active s="0">MUTE OFF</active>
+      </btn>
+      <btn j="95" x="299" y="717" w="145" h="20" t="white" flip="None" sim="0" l="1" s="1" js="LG_TV.setMute('on')">
+        <inactive s="0">MUTE ON</inactive>
+        <active s="0">MUTE ON</active>
+      </btn>
+    </landscape>
+  </page>
+</gui>
