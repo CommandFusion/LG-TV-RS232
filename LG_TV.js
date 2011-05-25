@@ -7,7 +7,7 @@ var LG_TV = {
 	setup: function() {
 		try {
 			LG_TV.log("Object Created");
-			CF.watch(CF.FeedbackMatchedEvent, "LG_TV", "LG_Feedback", LG_TV.ProcessLGFeedback);
+			CF.watch(CF.FeedbackMatchedEvent, "LG_TV", "LG_Feedback", LG_TV.ProcessFeedback);
 			CF.watch(CF.ConnectionStatusChangeEvent, "LG_TV", LG_TV.onConnectionChange, false);
 
 			CF.getJoin(CF.GlobalTokensJoin, function(j, v, t) {
@@ -53,73 +53,73 @@ var LG_TV = {
 	// ONLY THE LOW BIT IS IS SENT.  THIS MAKES IR ACK RESPONSES LOOK THE SAME AS RS232 RATIO
 	// COMMAND ACK RESPONSES.
 	IR: {
-		'channel up' : "00",
-		'channel down' : "01",
-		'volume up' : "02",
-		'volume down' : "03",
-		'power toggle' : "08",
-		'mute/delete' : "09",
-		'input toggle' : "0B",
-		'tv' : "0F",
-		'0' : "10",
-		'1' : "11",
-   		'2' : "12",
-   		'3' : "13",
-   		'4' : "14",
-   		'5' : "15",
-   		'6' : "16",
-   		'7' : "17",
-   		'8' : "18",
-   		'9' : "19",
-   		'flashback' : "1A",
-   		'favorite/mark' : "1E",
-   		'back' : "28",
-   		'av mode' : "30",
-   		'up' : "40",
-   		'down' : "41",
-   		'right' : "06",
-   		'left' : "07",
-   		'menu' : "43",
-   		'enter' : "44",
-   		'q menu' : "45",
-   		'-' : "4C",
-   		'list' : "53",
-   		'exit' : "5B",
-   		'widgets' : "58",
-   		'netcast' : "59",
-   		'blue' : "61",
-   		'yellow' : "63",
-   		'green' : "71",
-   		'red' : "72",
-   		'ratio toggle' : "79",
-   		'simplink' : "7E",
-   		'forward' : "8E",
-   		'rewind' : "8F",
-   		'energy saving' : "95",
-   		'info' : "AA",
-   		'play' : "B0",
-   		'stop' : "B1",
-   		'pause' : "BA",
-   		'input tv' : "D6",
-   		'power on' : "C4",
-   		'power off' : "C5",
-   		'input av1' : "5A",
-   		'input av2' : "D0",
+		'channel up' :       "00",
+		'channel down' :     "01",
+		'volume up' :        "02",
+		'volume down' :      "03",
+		'power toggle' :     "08",
+		'mute/delete' :      "09",
+		'input toggle' :     "0B",
+		'tv' :               "0F",
+		'0' :                "10",
+		'1' :                "11",
+   		'2' :                "12",
+   		'3' :                "13",
+   		'4' :                "14",
+   		'5' :                "15",
+   		'6' :                "16",
+   		'7' :                "17",
+   		'8' :                "18",
+   		'9' :                "19",
+   		'flashback' :        "1A",
+   		'favorite/mark' :    "1E",
+   		'back' :             "28",
+   		'av mode' :          "30",
+   		'up' :               "40",
+   		'down' :             "41",
+   		'right' :            "06",
+   		'left' :             "07",
+   		'menu' :             "43",
+   		'enter' :            "44",
+   		'q menu' :           "45",
+   		'-' :                "4C",
+   		'list' :             "53",
+   		'exit' :             "5B",
+   		'widgets' :          "58",
+   		'netcast' :          "59",
+   		'blue' :             "61",
+   		'yellow' :           "63",
+   		'green' :            "71",
+   		'red' :              "72",
+   		'ratio toggle' :     "79",
+   		'simplink' :         "7E",
+   		'forward' :          "8E",
+   		'rewind' :           "8F",
+   		'energy saving' :    "95",
+   		'info' :             "AA",
+   		'play' :             "B0",
+   		'stop' :             "B1",
+   		'pause' :            "BA",
+   		'input tv' :         "D6",
+   		'power on' :         "C4",
+   		'power off' :        "C5",
+   		'input av1' :        "5A",
+   		'input av2' :        "D0",
    		'input component1' : "BF",
    		'input component2' : "D4",
-   		'input rgbpc' : "D5",
-   		'input hdmi1' : "CE",
-   		'input hdmi2' : "CC",
-   		'input hdmi3' : "E9",
-   		'input hdmi4' : "DA",
-   		'ratio 4:3' : "76",
-   		'ratio 16:9' : "77",
-   		'zoom' : "AF",
-   		'3d' : "DC",
-   		'guide' : "AB",
-   		'text' : "20",
-   		'toption' : "21",
-   		'subtitle' : "39"
+   		'input rgbpc' :      "D5",
+   		'input hdmi1' :      "CE",
+   		'input hdmi2' :      "CC",
+   		'input hdmi3' :      "E9",
+   		'input hdmi4' :      "DA",
+   		'ratio 4:3' :        "76",
+   		'ratio 16:9' :       "77",
+   		'zoom' :             "AF",
+   		'3d' :               "DC",
+   		'guide' :            "AB",
+   		'text' :             "20",
+   		'toption' :          "21",
+   		'subtitle' :         "39"
 	},
 
 	sendIR: function(infrared) {
@@ -127,7 +127,7 @@ var LG_TV = {
 		// WE HAVE TO GET THE STATUS OF THE RATIO WITH THE RS232 COMMAND
 		// AFTER CALLING THE SENDIR COMMAND BECAUSE OF THE OVERLAP OF THE LOW
 		// BIT OF THE COMMAND BEING THE SAME.  IT'S A KLUDGE FIX
-		//LG_TV.getRatio();
+		LG_TV.getRatio();
 	},
 	/////////////////////////////////////////////////
 
@@ -147,22 +147,22 @@ var LG_TV = {
 	// ONLY THE LOW BIT IS IS SENT.  THIS MAKES RS232 RATIO ACK RESPONSES LOOK THE SAME AS IR
 	// COMMAND ACK RESPONSES.
 	Ratio: {
-		'4:3' : "01",
-		'16:9' : "02",
-		'zoom' : "04",
-		'program' : "06",
-		'14:9' : "07",
-		'scan' : "09",
-		'full wide' : "0B",
-		'cinema zoom 1' : "10",
-		'cinema zoom 2' : "11",
-		'cinema zoom 3' : "12",
-		'cinema zoom 4' : "13",
-		'cinema zoom 5' : "14",
-		'cinema zoom 6' : "15",
-		'cinema zoom 7' : "16",
-		'cinema zoom 8' : "17",
-		'cinema zoom 9' : "18",
+		'4:3' :            "01",
+		'16:9' :           "02",
+		'zoom' :           "04",
+		'program' :        "06",
+		'14:9' :           "07",
+		'scan' :           "09",
+		'full wide' :      "0B",
+		'cinema zoom 1' :  "10",
+		'cinema zoom 2' :  "11",
+		'cinema zoom 3' :  "12",
+		'cinema zoom 4' :  "13",
+		'cinema zoom 5' :  "14",
+		'cinema zoom 6' :  "15",
+		'cinema zoom 7' :  "16",
+		'cinema zoom 8' :  "17",
+		'cinema zoom 9' :  "18",
 		'cinema zoom 10' : "19",
 		'cinema zoom 11' : "1A",
 		'cinema zoom 12' : "1B",
@@ -362,7 +362,7 @@ var LG_TV = {
 		'off' : "00"
 	},
 	setOSDSelect: function(osd) {
-		LG_TV.sendcommand('kl 00 ' + LG_TV.OSDSelect[osd.toLowerCase()]);
+		LG_TV.sendCommand('kl 00 ' + LG_TV.OSDSelect[osd.toLowerCase()]);
 	},
 	getOSDSelect: function() {
 		LG_TV.sendCommand('kl 00 ff');
@@ -379,12 +379,12 @@ var LG_TV = {
 	// RS232 ACK FAILURE RESPONSE FORMAT: [p] [00] [NG] [XX]x WHERE XX IS THE CODE SENT
 	ISMMethod: {
 		'orbiter' : "02",
-		'normal' : "08",
-		'white' : "04",
-		'color' : "20"
+		'normal'  : "08",
+		'white'   : "04",
+		'color'   : "20"
 	},
 	setISMMethod: function(ism) {
-		LG_TV.sendCommand('jp 00 ' + LG_TV.ISMMethod[ism.toLowerCase]);
+		LG_TV.sendCommand('jp 00 ' + LG_TV.ISMMethod[ism.toLowerCase()]);
 	},
 	getISMMethod: function() {
 		LG_TV.sendCommand('jp 00 ff');
@@ -407,43 +407,43 @@ var LG_TV = {
 		LG_TV.sendCommand('kf 00 ff');
 	},
 	setVolume: function(level) {
-	   LG_TV.log( "Set Volume " + LG_TV.toHex(parseInt(level)));
-	   LG_TV.sendCommand( 'kf 00 ' + LG_TV.toHex(parseInt(level)))
+		LG_TV.log( "Set Volume " + LG_TV.toHex(parseInt(level)));
+		LG_TV.sendCommand( 'kf 00 ' + LG_TV.toHex(parseInt(level)))
 	},
 	getContrast: function() {
 		LG_TV.sendCommand('kg 00 ff');
 	},
 	setContrast: function(level) {
-	   LG_TV.log( "Set Contrast " + LG_TV.toHex(parseInt(level)));
-	   LG_TV.sendCommand( 'kg 00 ' + LG_TV.toHex(parseInt(level)))
+		LG_TV.log( "Set Contrast " + LG_TV.toHex(parseInt(level)));
+		LG_TV.sendCommand( 'kg 00 ' + LG_TV.toHex(parseInt(level)))
 	},
 	getBrightness: function() {
 		LG_TV.sendCommand('kh 00 ff');
 	},
 	setBrightness: function(level) {
-	   LG_TV.log( "Set Brightness " + LG_TV.toHex(parseInt(level)));
-	   LG_TV.sendCommand( 'kh 00 ' + LG_TV.toHex(parseInt(level)))
+		LG_TV.log( "Set Brightness " + LG_TV.toHex(parseInt(level)));
+		LG_TV.sendCommand( 'kh 00 ' + LG_TV.toHex(parseInt(level)))
 	},
 	getColor: function() {
 		LG_TV.sendCommand('ki 00 ff');
 	},
 	setColor: function(level) {
-	   LG_TV.log( "Set Color " + LG_TV.toHex(parseInt(level)));
-	   LG_TV.sendCommand( 'ki 00 ' + LG_TV.toHex(parseInt(level)))
+		LG_TV.log( "Set Color " + LG_TV.toHex(parseInt(level)));
+		LG_TV.sendCommand( 'ki 00 ' + LG_TV.toHex(parseInt(level)))
 	},
 	getTint: function() {
-		this.sendCommand('kj 00 ff');
+		LG_TV.sendCommand('kj 00 ff');
 	},
 	setTint: function(level) {
-	   LG_TV.log( "Set Tint " + LG_TV.toHex(parseInt(level)));
-	   LG_TV.sendCommand( 'kj 00 ' + LG_TV.toHex(parseInt(level)))
+		LG_TV.log( "Set Tint " + LG_TV.toHex(parseInt(level)));
+		LG_TV.sendCommand( 'kj 00 ' + LG_TV.toHex(parseInt(level)))
 	},
 	getSharpness: function() {
 		LG_TV.sendCommand('kk 00 ff');
 	},
 	setSharpness: function(level) {
-	   LG_TV.log( "Set Sharpness " + LG_TV.toHex(parseInt(level)));
-	   LG_TV.sendCommand( 'kk 00 ' + LG_TV.toHex(parseInt(level)))
+		LG_TV.log( "Set Sharpness " + LG_TV.toHex(parseInt(level)));
+		LG_TV.sendCommand( 'kk 00 ' + LG_TV.toHex(parseInt(level)))
 	},
 	getTreble: function() {
 		LG_TV.sendCommand('kr 00 ff');
@@ -456,29 +456,29 @@ var LG_TV = {
 		LG_TV.sendCommand('ks 00 ff');
 	},
 	setBass: function(level) {
-	   LG_TV.log( "Set Bass " + LG_TV.toHex(parseInt(level)));
-	   LG_TV.sendCommand( 'ks 00 ' + LG_TV.toHex(parseInt(level)))
+		LG_TV.log( "Set Bass " + LG_TV.toHex(parseInt(level)));
+		LG_TV.sendCommand( 'ks 00 ' + LG_TV.toHex(parseInt(level)))
 	},
 	getBalance: function() {
 		LG_TV.sendCommand('kt 00 ff');
 	},
 	setBalance: function(level) {
-	   LG_TV.log( "Set Balance " + LG_TV.toHex(parseInt(level)));
-	   LG_TV.sendCommand( 'kt 00 ' + LG_TV.toHex(parseInt(level)))
+		LG_TV.log( "Set Balance " + LG_TV.toHex(parseInt(level)));
+		LG_TV.sendCommand( 'kt 00 ' + LG_TV.toHex(parseInt(level)))
 	},
 	getTemperature: function() {
 		LG_TV.sendCommand('xu 00 ff');
 	},
 	setTemperature: function(level) {
-	   LG_TV.log( "Set Temperature " + LG_TV.toHex(parseInt(level)));
-	   LG_TV.sendCommand( 'xu 00 ' + LG_TV.toHex(parseInt(level)))
+		LG_TV.log( "Set Temperature " + LG_TV.toHex(parseInt(level)));
+		LG_TV.sendCommand( 'xu 00 ' + LG_TV.toHex(parseInt(level)))
 	},
 	getBacklight: function() {
 		LG_TV.sendCommand('mg 00 ff');
 	},
 	setBacklight: function(level) {
-	   LG_TV.log( "Set Backlight " + LG_TV.toHex(parseInt(level)));
-	   LG_TV.sendCommand( 'mg 00 ' + LG_TV.toHex(parseInt(level)))
+		LG_TV.log( "Set Backlight " + LG_TV.toHex(parseInt(level)));
+		LG_TV.sendCommand( 'mg 00 ' + LG_TV.toHex(parseInt(level)))
 	},
 	/////////////////////////////////////////////////
 
@@ -488,27 +488,26 @@ var LG_TV = {
 	/////////////////////////////
 	Initialize: function() {
 		LG_TV.log("Initializing LG Object");
-		LG_TV.getPower();
-		LG_TV.getPowerSave();
-		LG_TV.getScreenMute();
-		LG_TV.getRemoteLock();
-		LG_TV.getInput();
-		LG_TV.getMute();
-		LG_TV.getVolume();
-		LG_TV.getContrast();
-		LG_TV.getBrightness();
-		LG_TV.getColor();
-		LG_TV.getTint();
-		LG_TV.getSharpness();
-		LG_TV.getTreble();
-		LG_TV.getBass();
-		LG_TV.getBalance();
-		LG_TV.getTemperature();
-	   /* this.getRatio();
-		this.getBacklight();
-		this.getOSDSelect();
-		this.getISMMethod();
-		this.getBacklight();*/
+		setTimeout(LG_TV.getPower(), 100);
+		setTimeout(LG_TV.getPowerSave(), 5000);
+		setTimeout(LG_TV.getScreenMute(), 15000);
+		setTimeout(LG_TV.getRemoteLock(), 30000);
+		setTimeout(LG_TV.getInput(), 35000);
+		setTimeout(LG_TV.getMute(), 40000);
+		setTimeout(LG_TV.getVolume(), 45000);
+		setTimeout(LG_TV.getContrast(), 50000);
+		setTimeout(LG_TV.getBrightness(), 55000);
+		setTimeout(LG_TV.getColor(), 60000);
+		setTimeout(LG_TV.getTint(), 65000);
+		setTimeout(LG_TV.getSharpness(), 70000);
+		setTimeout(LG_TV.getTreble(), 75000);
+		setTimeout(LG_TV.getBass(), 80000);
+		setTimeout(LG_TV.getBalance(), 85000);
+		setTimeout(LG_TV.getTemperature(), 90000);
+	    setTimeout(LG_TV.getRatio(), 95000);
+		setTimeout(LG_TV.getOSDSelect(), 100000);
+		setTimeout(LG_TV.getISMMethod(), 105000);
+		//LG_TV.getBacklight();
 	},
 	/////////////////////////////////////////////////
 
@@ -530,7 +529,7 @@ var LG_TV = {
 			str += String.fromCharCode(parseInt(hex.substr(i, 2), 16));
 		return str;
 	},
-	
+
 	/////////////////////////////////////////////////
 
 
@@ -556,7 +555,7 @@ var LG_TV = {
 		switch (command) {
 			// POWER
 			case "a":
-				LG_TV.log("Power: " + LG_TV.Power[value] + " " + value);
+				LG_TV.log("Power: " + value);
 				switch ( value ) {
 					case "01":
 						CF.setJoin("d" + (LG_TV.JOINSTART + 80), 1);
@@ -572,7 +571,7 @@ var LG_TV = {
 
 			// POWER SAVER
 			case "q":
-				LG_TV.log("PowerSave: " + LG_TV.PowerSave[value] + " " + value);
+				LG_TV.log("PowerSave: " + value);
 				CF.setJoin("d" + (LG_TV.JOINSTART + 82), 0);
 				CF.setJoin("d" + (LG_TV.JOINSTART + 83), 0);
 				CF.setJoin("d" + (LG_TV.JOINSTART + 84), 0);
@@ -735,108 +734,197 @@ var LG_TV = {
 			// BRIGHTNESS
 			case "h":
 				LG_TV.log("Brightness: " + parseInt(value,16));
-				CF.setJoin("a141416", parseInt(value,16) * 655 );
+				CF.setJoin("a" + (LG_TV.JOINSTART + 2), parseInt(value,16) * 655 );
 				break;
 			// END BRIGHTNESS PARSING
 
 			// COLOR
 			case "i":
 				LG_TV.log("Color: " + parseInt(value,16));
-				CF.setJoin("a141417", parseInt(value,16) * 655 );
+				CF.setJoin("a" + (LG_TV.JOINSTART + 3), parseInt(value,16) * 655 );
 				break;
 			// END COLOR PARSING
 
 			// TINT
 			case "j":
 				LG_TV.log("Tint: " + parseInt(value,16));
-				CF.setJoin("a141418", parseInt(value,16) * 655 );
+				CF.setJoin("a" + (LG_TV.JOINSTART + 4), parseInt(value,16) * 655 );
 				break;
 			// END TINT PARSING
 
 			// SHARPNESS
 			case "k":
 				LG_TV.log("Sharpness: " + parseInt(value,16));
-				CF.setJoin("a141419", parseInt(value,16) * 655 );
+				CF.setJoin("a" + (LG_TV.JOINSTART + 5), parseInt(value,16) * 655 );
 				break;
 			// END SHARPNESS PARSING
 
 			// TREBLE
 			case "r":
 				LG_TV.log("Treble: " + parseInt(value,16));
-				CF.setJoin("a141420", parseInt(value,16) * 655 );
+				CF.setJoin("a" + (LG_TV.JOINSTART + 6), parseInt(value,16) * 655 );
 				break;
 			// END TREBLE PARSING
 
 			// BASS
 			case "s":
 				LG_TV.log("Bass: " + parseInt(value,16));
-				CF.setJoin("a141421", parseInt(value,16) * 655 );
+				CF.setJoin("a" + (LG_TV.JOINSTART + 7), parseInt(value,16) * 655 );
 				break;
 			// END BASS PARSING
 
 			// TEMPERATURE
 			case "u":
 				LG_TV.log("Temperature: " + parseInt(value,16));
-				CF.setJoin("a141422", parseInt(value,16) * 655 );
+				CF.setJoin("a" + (LG_TV.JOINSTART + 8), parseInt(value,16) * 655 );
 				break;
 			// END TEMPERATURE PARSING
 
 			// BALANCE
 			case "t":
 				LG_TV.log("Balance: " + parseInt(value,16));
-				CF.setJoin("a141423", parseInt(value,16) * 655 );
+				CF.setJoin("a" + (LG_TV.JOINSTART + 9), parseInt(value,16) * 655 );
 				break;
 			// END BALANCE PARSING
 
-			/* // BACKLIGHT
-			case "g":
-			if (this.debug) LG_TV.log("Backlight: " + parseInt(value,16));
-			CF.setJoin("a141424", parseInt(value,16) * 655 );
-			break;
-			// END BACKLIGHT PARSING
-
 			// SCREEN RATIO
 			case "c":
-			for ( var i = 271; i <= 293; i++ ) {
-			   CF.setJoin("d"+i, 0);
-			}
-			value = parseInt(value,16) + 270;
-			CF.setJoin("d"+value, 1);
-			break;
+				LG_TV.log("Screen Ratio: " + parseInt(value,16));
+				for ( var i = LG_TV.JOINSTART + 95; i <= LG_TV.JOINSTART + 117; i++ ) {
+					CF.setJoin("d"+i, 0);
+				}
+				switch (value) {
+					case "01":
+						CF.setJoin("d" + (LG_TV.JOINSTART + 95), 1);
+						break;
+					case "02":
+						CF.setJoin("d" + (LG_TV.JOINSTART + 96), 1);
+						break;
+					case "04":
+						CF.setJoin("d" + (LG_TV.JOINSTART + 97), 1);
+						break;
+					case "06":
+						CF.setJoin("d" + (LG_TV.JOINSTART + 98), 1);
+						break;
+					case "07":
+						CF.setJoin("d" + (LG_TV.JOINSTART + 99), 1);
+						break;
+					case "09":
+						CF.setJoin("d" + (LG_TV.JOINSTART + 100), 1);
+						break;
+					case "0B":
+						CF.setJoin("d" + (LG_TV.JOINSTART + 101), 1);
+						break;
+					case "10":
+						CF.setJoin("d" + (LG_TV.JOINSTART + 102), 1);
+						break;
+					case "11":
+						CF.setJoin("d" + (LG_TV.JOINSTART + 103), 1);
+						break;
+					case "12":
+						CF.setJoin("d" + (LG_TV.JOINSTART + 104), 1);
+						break;
+					case "13":
+						CF.setJoin("d" + (LG_TV.JOINSTART + 105), 1);
+						break;
+					case "14":
+						CF.setJoin("d" + (LG_TV.JOINSTART + 106), 1);
+						break;
+					case "15":
+						CF.setJoin("d" + (LG_TV.JOINSTART + 107), 1);
+						break;
+					case "16":
+						CF.setJoin("d" + (LG_TV.JOINSTART + 108), 1);
+						break;
+					case "17":
+						CF.setJoin("d" + (LG_TV.JOINSTART + 109), 1);
+						break;
+					case "18":
+						CF.setJoin("d" + (LG_TV.JOINSTART + 110), 1);
+						break;
+					case "19":
+						CF.setJoin("d" + (LG_TV.JOINSTART + 111), 1);
+						break;
+					case "1A":
+						CF.setJoin("d" + (LG_TV.JOINSTART + 112), 1);
+						break;
+					case "1B":
+						CF.setJoin("d" + (LG_TV.JOINSTART + 113), 1);
+						break;
+					case "1C":
+						CF.setJoin("d" + (LG_TV.JOINSTART + 114), 1);
+						break;
+					case "1D":
+						CF.setJoin("d" + (LG_TV.JOINSTART + 115), 1);
+						break;
+					case "1E":
+						CF.setJoin("d" + (LG_TV.JOINSTART + 116), 1);
+						break;
+					case "1F":
+						CF.setJoin("d" + (LG_TV.JOINSTART + 117), 1);
+						break;
+				}
+				value = parseInt(value,16) + 270;
+				CF.setJoin("d"+value, 1);
+				break;
 			// END SCREEN RATIO PARSING
 
-			// OSD SELECT
+            /*
+		    // BACKLIGHT - BACKLIGHT LOW BIT COMMAND CHARACTER OVERLAPS CONTRAST CHARACTER
+		    // SO WE WON'T USE BACKLIGHT
+			case "g":
+				LG_TV.log("Backlight: " + parseInt(value,16));
+				CF.setJoin("a" + (LG_TV.JOINSTART + 10), parseInt(value,16) * 655 );
+			break;
+			// END BACKLIGHT PARSING
+			*/
+
+			// OSD SELECT PARSING
 			case "l":
-			LG_TV.log("OSD Select: " + this.OSDSelect[value]);
-			break;
-			// ISM METHOD
+				LG_TV.log("OSD Select: " + value);
+				switch (value) {
+					case "00":
+						CF.setJoin("d" + (LG_TV.JOINSTART + 118), 1);
+						CF.setJoin("d" + (LG_TV.JOINSTART + 119), 0);
+						break;
+					case "01":
+						CF.setJoin("d" + (LG_TV.JOINSTART + 118), 0);
+						CF.setJoin("d" + (LG_TV.JOINSTART + 119), 1);
+						break;
+				}
+				break;
+			// END OSD SELECT PARSING
+
+
+			// ISM METHOD PARSING
 			case "p":
-			LG_TV.log("ISM Method: " + this.ISMMethod[value]);
-			break;
-			// RESPONSE FROM A KEYPRESS WE ARE ONLY INTERESTED IN THOSE THAT WILL CHANGE THE STATUS OF THE TV
-			case "c":
-			switch (value) {
-			  // MUTE
-			  case "09":
-			  this.getMute();
-			  this.getVolume();
-			  break;
-			  // VOLUME UP
-			  case "02":
-			  this.getVolume();
-			  break;
-			  // VOLUME DOWN
-			  case "03":
-			  this.getVolume();
-			  // POWER
-			  case "08":
-			  this.getPower();
-			  break;
-			}
-			break;*/
+				LG_TV.log("ISM Method: " + value);
+				CF.setJoin("d" + (LG_TV.JOINSTART + 120), 0);
+				CF.setJoin("d" + (LG_TV.JOINSTART + 121), 0);
+				CF.setJoin("d" + (LG_TV.JOINSTART + 122), 0);
+				CF.setJoin("d" + (LG_TV.JOINSTART + 123), 0);
+				switch (value) {
+					case "02":
+						CF.setJoin("d" + (LG_TV.JOINSTART + 120), 1);
+						break;
+					case "08":
+						CF.setJoin("d" + (LG_TV.JOINSTART + 121), 1);
+						break;
+					case "04":
+						CF.setJoin("d" + (LG_TV.JOINSTART + 122), 1);
+						break;
+					case "20":
+						CF.setJoin("d" + (LG_TV.JOINSTART + 123), 1);
+						break;
+				}
+				break;
+			// END ISM METHOD PARSING
+
+			// DEFAULT UNCAUGHT RETURN VALUE
 			default:
 				LG_TV.log("Uncaught Return " + feedbackstring);
 				break;
+			// END DEFAULT
 		}
 	},
 	/////////////////////////////////////////////////
