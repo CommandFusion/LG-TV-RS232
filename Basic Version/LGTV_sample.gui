@@ -1,0 +1,710 @@
+<gui>
+  <properties>
+    <project>JB Home</project>
+    <designer>Jarrod</designer>
+    <size>
+      <portrait width="320" height="480" />
+      <landscape width="480" height="320" />
+    </size>
+    <controlsystem connectionStatus="0" disconnectionStatus="0" offlinequeue="1">
+      <hostname>192.168.0.102</hostname>
+      <commandPort>8020</commandPort>
+    </controlsystem>
+    <imagefolder>
+    </imagefolder>
+    <debug loaderrors="1" connectionerrors="1" />
+    <devices>
+      <device name="Jarrod's iPhone">693CBC248292EB74D39DF7B0415B25CA</device>
+      <device name="Jarrod's iTouch">A1FDD44DB1F7CCDAA389BD22C9A92466</device>
+      <device name="Jarrod's iPhone 3G">3D0F1EA73558BA41AAE0105C51EDB533</device>
+      <device name="CommandFusion iTouch 3rd Gen">9C9309EA6867A4C87FEB1BC0E8A1A20C</device>
+    </devices>
+  </properties>
+  <systems>
+    <system name="LG Plasma RS232" ip="192.168.0.11" port="4999" protocol="tcp" alwayson="1" offlinequeue="1" accept="0" acceptBroadcasts="0" ssl="0" maxconnections="0" heartbeatRx="" heartbeatTx="" heartbeatMode="0" eom="x" connectionStatus="0" disconnectionStatus="0" startupCmd="Get Status">
+      <cmd name="Input TV">xb 1 0\x0D</cmd>
+      <cmd name="Input PC">xb 1 60\x0D</cmd>
+      <cmd name="Plasma On">ka 1 1\x0D</cmd>
+      <cmd name="Plasma Off">ka 1 0\x0D</cmd>
+      <cmd name="Mute On">ke 1 0\x0D</cmd>
+      <cmd name="Mute Off">ke 1 1\x0D</cmd>
+      <cmd name="Volume Up">mc 1 2\x0D</cmd>
+      <cmd name="Volume Down">mc 1 3\x0D</cmd>
+      <cmd name="Input HDMI 1">xb 1 90\x0D</cmd>
+      <cmd name="Power Toggle">mc 1 8\x0D</cmd>
+      <cmd name="CH 7 HD">ma 1 0 46 10\x0D</cmd>
+      <cmd name="CH 10 HD">ma 1 0 12 10\x0D</cmd>
+      <cmd name="CH 9 HD">ma 1 0 5A 10\x0D</cmd>
+      <cmd name="CH 7">ma 1 0 7 10\x0D</cmd>
+      <cmd name="CH SBS">ma 1 0 3 10\x0D</cmd>
+      <cmd name="CH SBS HD">ma 1 0 1E 10\x0D</cmd>
+      <cmd name="CH SBS 2">ma 1 0 20 10\x0D</cmd>
+      <cmd name="CH 9">ma 1 0 9 10\x0D</cmd>
+      <cmd name="CH 10">ma 1 0 A 10\x0D</cmd>
+      <cmd name="CH ABC1">ma 1 0 2 10\x0D</cmd>
+      <cmd name="CH ABC2">ma 1 0 16 10\x0D</cmd>
+      <cmd name="CH ONE HD">ma 1 0 1 10\x0D</cmd>
+      <cmd name="CH ABC HD">ma 1 0 14 10\x0D</cmd>
+      <cmd name="Mute Toggle">mc 1 9\x0D</cmd>
+      <cmd name="TV Guide">mc 1 AB\x0D</cmd>
+      <cmd name="TV Menu">mc 1 43\x0D</cmd>
+      <cmd name="Arrow Left">mc 1 7\x0D</cmd>
+      <cmd name="Arrow Right">mc 1 6\x0D</cmd>
+      <cmd name="Arrow Up">mc 1 40\x0D</cmd>
+      <cmd name="Arrow Down">mc 1 41\x0D</cmd>
+      <cmd name="Arrow OK">mc 1 44\x0D</cmd>
+      <cmd name="TV Exit">mc 1 28\x0D</cmd>
+      <cmd name="TV Info">mc 1 AA\x0D</cmd>
+      <cmd name="TV Num 1">mc 1 11\x0D</cmd>
+      <cmd name="TV Num 2">mc 1 12\x0D</cmd>
+      <cmd name="TV Num 3">mc 1 13\x0D</cmd>
+      <cmd name="TV Num 4">mc 1 14\x0D</cmd>
+      <cmd name="TV Num 5">mc 1 15\x0D</cmd>
+      <cmd name="TV Num 6">mc 1 16\x0D</cmd>
+      <cmd name="TV Num 7">mc 1 17\x0D</cmd>
+      <cmd name="TV Num 8">mc 1 18\x0D</cmd>
+      <cmd name="TV Num 9">mc 1 19\x0D</cmd>
+      <cmd name="TV Num 0">mc 1 10\x0D</cmd>
+      <cmd name="CH ONE SD">ma 1 0 C 10\x0D</cmd>
+      <cmd name="Get Volume">kf 1 FF\x0D</cmd>
+      <cmd name="Get Power State">ka 1 FF\x0D</cmd>
+      <cmd name="Get Mute State">ke 1 FF\x0D</cmd>
+      <cmd name="Get Status">ka 1 FF\x0Dke 1 FF\x0Dkf 1 FF\x0D</cmd>
+      <cmd name="CH GO">ma 1 0 63 10\x0D</cmd>
+      <cmd name="test">send hex \x01 \x00 \xFF end</cmd>
+      <cmd name="Set Volume">kf 1 [sliderval]\x0D</cmd>
+      <cmd name="CH 7TWO">ma 1 0 48 10\x0D</cmd>
+      <fb name="volume" regex="^f \d{1,2} OK(.{1,2})x$">
+        <group index="1" name="level" datatype="a" target="a1" max="100" unit="hex" />
+      </fb>
+      <fb name="power" regex="^a \d{1,2} OK(\d{1,2})x$">
+        <group index="1" name="state" datatype="d" target="d999" max="1" />
+      </fb>
+      <fb name="mute state" regex="^e \d{1,2} OK(\d{1,2})x$">
+        <group index="1" name="state" datatype="d" target="d998" max="1" />
+      </fb>
+    </system>
+  </systems>
+  <macros>
+    <macro name="DigitalTV">
+      <command delay="0">Plasma On</command>
+      <command delay="500">Get Power State</command>
+    </macro>
+    <macro name="Mute">
+      <command delay="0">Mute Toggle</command>
+      <command delay="100">Get Mute State</command>
+    </macro>
+    <macro name="Nintendo">
+      <command delay="0">Input HDMI 1</command>
+      <command delay="0">Plasma On</command>
+      <command delay="3000">Input HDMI 1</command>
+    </macro>
+    <macro name="PC">
+      <command delay="0">Input PC</command>
+      <command delay="0">Plasma On</command>
+      <command delay="3000">Input PC</command>
+    </macro>
+    <macro name="PowerTog">
+      <command delay="0">Power Toggle</command>
+      <command delay="100">Get Power State</command>
+    </macro>
+    <macro name="Vol Down">
+      <command delay="0">Volume Down</command>
+      <command delay="100">Get Volume</command>
+      <command delay="100">Get Mute State</command>
+    </macro>
+    <macro name="Vol Up">
+      <command delay="0">Volume Up</command>
+      <command delay="100">Get Volume</command>
+      <command delay="100">Get Mute State</command>
+    </macro>
+  </macros>
+  <themes>
+    <theme type="background" name=".portrait"><![CDATA[background-color: #000000; background-image: url(portrait.png); background-repeat: no-repeat;]]></theme>
+    <theme type="button" name=".btn[state='0']"><![CDATA[padding: 5px 5px 5px 5px; background-image: url(btn_rect_off.png); text-shadow: rgba(72,72,72,1) 1px 1px 1px; color: White; font-size: 14px; font-family: 'Verdana'; font-weight: bold; font-style: none; text-decoration: none; text-align: center; vertical-align: middle; display: table-cell; box-sizing: border-box; -webkit-box-sizing: border-box; -webkit-tap-highlight-color:rgba(0,0,0,0);]]></theme>
+    <theme type="button" name=".btn[state='1']"><![CDATA[padding: 8px 5px 5px 5px; background-image: url(btn_rect_on.png); color: Black; font-size: 14px; font-family: 'Verdana'; font-weight: bold; font-style: none; text-decoration: none; text-align: center; vertical-align: middle; display: table-cell; box-sizing: border-box; -webkit-box-sizing: border-box; -webkit-tap-highlight-color:rgba(0,0,0,0);]]></theme>
+    <theme type="gauge" name=".horizontal[state='0']"><![CDATA[ background-image: url(gauge_h_off.png);]]></theme>
+    <theme type="gauge" name=".horizontal[state='1']"><![CDATA[ background-image: url(gauge_h_on.png);]]></theme>
+    <theme type="gauge" name=".vertical[state='0']"><![CDATA[ background-image: url(gauge_v_off.png);]]></theme>
+    <theme type="gauge" name=".vertical[state='1']"><![CDATA[ background-image: url(gauge_v_on.png);]]></theme>
+    <theme type="text" name=".indicator"><![CDATA[ color: White; font-size: 12px; font-family: 'Verdana'; text-align: center; vertical-align: middle; font-weight: bold; font-style: none; text-decoration: none; display: table-cell;]]></theme>
+    <theme type="background" name=".landscape"><![CDATA[background-color: White; background-image: url(landscape.png); background-repeat: no-repeat;]]></theme>
+    <theme type="text" name=".info_left"><![CDATA[ color: White; font-size: 14px; font-family: 'Verdana'; text-align: left; vertical-align: middle; font-weight: normal; font-style: none; text-decoration: none; display: table-cell;]]></theme>
+    <theme type="input" name=".transparent"><![CDATA[ border-width: 0px; color: Black; font-size: 14px; font-family: 'Verdana'; text-align: left; vertical-align: middle; font-weight: bold; font-style: none; text-decoration: none; display: table-cell;]]></theme>
+    <theme type="text" name=".title"><![CDATA[ color: #383838; font-size: 14px; font-family: 'Verdana'; text-align: center; vertical-align: middle; font-weight: bold; font-style: none; text-decoration: none; display: table-cell;]]></theme>
+    <theme type="text" name=".info_center"><![CDATA[ color: White; font-size: 14px; font-family: 'Verdana'; text-align: center; vertical-align: middle; font-weight: normal; font-style: none; text-decoration: none; display: table-cell;]]></theme>
+    <theme type="button" name=".back[state='0']"><![CDATA[padding: 0px 0px 0px 0px; background-image: url(back_off.png); color: White; font-size: 12px; font-family: 'Verdana'; font-weight: normal; font-style: none; text-decoration: none; text-align: center; vertical-align: middle; display: table-cell; box-sizing: border-box; -webkit-box-sizing: border-box; -webkit-tap-highlight-color:rgba(0,0,0,0);]]></theme>
+    <theme type="button" name=".back[state='1']"><![CDATA[padding: 0px 0px 0px 0px; background-image: url(back_on.png); color: White; font-size: 12px; font-family: 'Verdana'; font-weight: normal; font-style: none; text-decoration: none; text-align: center; vertical-align: middle; display: table-cell; box-sizing: border-box; -webkit-box-sizing: border-box; -webkit-tap-highlight-color:rgba(0,0,0,0);]]></theme>
+    <theme type="button" name=".pwr[state='0']"><![CDATA[padding: 0px 0px 0px 0px; background-image: url(pwr_off.png); color: White; font-size: 12px; font-family: 'Verdana'; font-weight: normal; font-style: none; text-decoration: none; text-align: center; vertical-align: middle; display: table-cell; box-sizing: border-box; -webkit-box-sizing: border-box; -webkit-tap-highlight-color:rgba(0,0,0,0);]]></theme>
+    <theme type="button" name=".pwr[state='1']"><![CDATA[padding: 0px 0px 0px 0px; background-image: url(pwr_on.png); color: White; font-size: 12px; font-family: 'Verdana'; font-weight: normal; font-style: none; text-decoration: none; text-align: center; vertical-align: middle; display: table-cell; box-sizing: border-box; -webkit-box-sizing: border-box; -webkit-tap-highlight-color:rgba(0,0,0,0);]]></theme>
+    <theme type="button" name=".btn_lrg[state='0']"><![CDATA[padding: 5px 15px 5px 5px; background-image: url(btn_rect_lrg_off.png); text-shadow: rgba(72,72,72,1) 1px 1px 1px; color: #F0F0F0; font-size: 28px; font-family: 'Verdana'; font-weight: normal; font-style: none; text-decoration: none; text-align: right; vertical-align: middle; display: table-cell; box-sizing: border-box; -webkit-box-sizing: border-box; -webkit-tap-highlight-color:rgba(0,0,0,0);]]></theme>
+    <theme type="button" name=".btn_lrg[state='1']"><![CDATA[padding: 12px 15px 5px 5px; background-image: url(btn_rect_lrg_on.png); color: Black; font-size: 28px; font-family: 'Verdana'; font-weight: normal; font-style: none; text-decoration: none; text-align: right; vertical-align: middle; display: table-cell; box-sizing: border-box; -webkit-box-sizing: border-box; -webkit-tap-highlight-color:rgba(0,0,0,0);]]></theme>
+    <theme type="button" name=".tv_hd[state='0']"><![CDATA[padding: 0px 0px 0px 0px; background-image: url(tv_hd_off.png); color: White; font-size: 12px; font-family: 'Verdana'; font-weight: normal; font-style: none; text-decoration: none; text-align: center; vertical-align: middle; display: table-cell; box-sizing: border-box; -webkit-box-sizing: border-box; -webkit-tap-highlight-color:rgba(0,0,0,0);]]></theme>
+    <theme type="button" name=".tv_hd[state='1']"><![CDATA[padding: 0px 0px 0px 0px; background-image: url(tv_hd_on.png); color: White; font-size: 12px; font-family: 'Verdana'; font-weight: normal; font-style: none; text-decoration: none; text-align: center; vertical-align: middle; display: table-cell; box-sizing: border-box; -webkit-box-sizing: border-box; -webkit-tap-highlight-color:rgba(0,0,0,0);]]></theme>
+    <theme type="button" name=".tv_sd[state='0']"><![CDATA[padding: 0px 0px 0px 0px; background-image: url(tv_sd_off.png); color: White; font-size: 12px; font-family: 'Verdana'; font-weight: normal; font-style: none; text-decoration: none; text-align: center; vertical-align: middle; display: table-cell; box-sizing: border-box; -webkit-box-sizing: border-box; -webkit-tap-highlight-color:rgba(0,0,0,0);]]></theme>
+    <theme type="button" name=".tv_sd[state='1']"><![CDATA[padding: 0px 0px 0px 0px; background-image: url(tv_sd_on.png); color: White; font-size: 12px; font-family: 'Verdana'; font-weight: normal; font-style: none; text-decoration: none; text-align: center; vertical-align: middle; display: table-cell; box-sizing: border-box; -webkit-box-sizing: border-box; -webkit-tap-highlight-color:rgba(0,0,0,0);]]></theme>
+    <theme type="button" name=".blank[state='0']"><![CDATA[padding: 0px 0px 0px 0px; color: White; font-size: 12px; font-family: 'Verdana'; font-weight: normal; font-style: none; text-decoration: none; text-align: center; vertical-align: middle; display: table-cell; box-sizing: border-box; -webkit-box-sizing: border-box; -webkit-tap-highlight-color:rgba(0,0,0,0);]]></theme>
+    <theme type="button" name=".blank[state='1']"><![CDATA[padding: 0px 0px 0px 0px; color: White; font-size: 12px; font-family: 'Verdana'; font-weight: normal; font-style: none; text-decoration: none; text-align: center; vertical-align: middle; display: table-cell; box-sizing: border-box; -webkit-box-sizing: border-box; -webkit-tap-highlight-color:rgba(0,0,0,0);]]></theme>
+    <theme type="button" name=".btn_sml[state='0']"><![CDATA[padding: 0px 0px 0px 0px; background-image: url(btn_rect_sml_off.png); text-shadow: rgba(0,0,0,0.61) 1px 1px 1px; color: White; font-size: 12px; font-family: 'Verdana'; font-weight: bold; font-style: none; text-decoration: none; text-align: center; vertical-align: middle; display: table-cell; box-sizing: border-box; -webkit-box-sizing: border-box; -webkit-tap-highlight-color:rgba(0,0,0,0);]]></theme>
+    <theme type="button" name=".btn_sml[state='1']"><![CDATA[padding: 4px 0px 0px 0px; background-image: url(btn_rect_sml_on.png); color: Black; font-size: 12px; font-family: 'Verdana'; font-weight: bold; font-style: none; text-decoration: none; text-align: center; vertical-align: middle; display: table-cell; box-sizing: border-box; -webkit-box-sizing: border-box; -webkit-tap-highlight-color:rgba(0,0,0,0);]]></theme>
+    <theme type="button" name=".arrow_left[state='0']"><![CDATA[padding: 0px 0px 0px 0px; background-image: url(arrow_left_off.png); color: White; font-size: 12px; font-family: 'Verdana'; font-weight: normal; font-style: none; text-decoration: none; text-align: center; vertical-align: middle; display: table-cell; box-sizing: border-box; -webkit-box-sizing: border-box; -webkit-tap-highlight-color:rgba(0,0,0,0);]]></theme>
+    <theme type="button" name=".arrow_left[state='1']"><![CDATA[padding: 0px 0px 0px 0px; background-image: url(arrow_left_on.png); color: White; font-size: 12px; font-family: 'Verdana'; font-weight: normal; font-style: none; text-decoration: none; text-align: center; vertical-align: middle; display: table-cell; box-sizing: border-box; -webkit-box-sizing: border-box; -webkit-tap-highlight-color:rgba(0,0,0,0);]]></theme>
+    <theme type="button" name=".arrow_right[state='0']"><![CDATA[padding: 0px 0px 0px 0px; background-image: url(arrow_right_off.png); color: White; font-size: 12px; font-family: 'Verdana'; font-weight: normal; font-style: none; text-decoration: none; text-align: center; vertical-align: middle; display: table-cell; box-sizing: border-box; -webkit-box-sizing: border-box; -webkit-tap-highlight-color:rgba(0,0,0,0);]]></theme>
+    <theme type="button" name=".arrow_right[state='1']"><![CDATA[padding: 0px 0px 0px 0px; background-image: url(arrow_right_on.png); color: White; font-size: 12px; font-family: 'Verdana'; font-weight: normal; font-style: none; text-decoration: none; text-align: center; vertical-align: middle; display: table-cell; box-sizing: border-box; -webkit-box-sizing: border-box; -webkit-tap-highlight-color:rgba(0,0,0,0);]]></theme>
+    <theme type="button" name=".arrow_up[state='0']"><![CDATA[padding: 0px 0px 0px 0px; background-image: url(arrow_up_off.png); color: White; font-size: 12px; font-family: 'Verdana'; font-weight: normal; font-style: none; text-decoration: none; text-align: center; vertical-align: middle; display: table-cell; box-sizing: border-box; -webkit-box-sizing: border-box; -webkit-tap-highlight-color:rgba(0,0,0,0);]]></theme>
+    <theme type="button" name=".arrow_up[state='1']"><![CDATA[padding: 0px 0px 0px 0px; background-image: url(arrow_up_on.png); color: White; font-size: 12px; font-family: 'Verdana'; font-weight: normal; font-style: none; text-decoration: none; text-align: center; vertical-align: middle; display: table-cell; box-sizing: border-box; -webkit-box-sizing: border-box; -webkit-tap-highlight-color:rgba(0,0,0,0);]]></theme>
+    <theme type="button" name=".arrow_down[state='0']"><![CDATA[padding: 0px 0px 0px 0px; background-image: url(arrow_down_off.png); color: White; font-size: 12px; font-family: 'Verdana'; font-weight: normal; font-style: none; text-decoration: none; text-align: center; vertical-align: middle; display: table-cell; box-sizing: border-box; -webkit-box-sizing: border-box; -webkit-tap-highlight-color:rgba(0,0,0,0);]]></theme>
+    <theme type="button" name=".arrow_down[state='1']"><![CDATA[padding: 0px 0px 0px 0px; background-image: url(arrow_down_on.png); color: White; font-size: 12px; font-family: 'Verdana'; font-weight: normal; font-style: none; text-decoration: none; text-align: center; vertical-align: middle; display: table-cell; box-sizing: border-box; -webkit-box-sizing: border-box; -webkit-tap-highlight-color:rgba(0,0,0,0);]]></theme>
+    <theme type="button" name=".menu_tv[state='0']"><![CDATA[padding: 0px 0px 0px 0px; background-image: url(menu_tv_off.png); color: White; font-size: 12px; font-family: 'Verdana'; font-weight: normal; font-style: none; text-decoration: none; text-align: center; vertical-align: middle; display: table-cell; box-sizing: border-box; -webkit-box-sizing: border-box; -webkit-tap-highlight-color:rgba(0,0,0,0);]]></theme>
+    <theme type="button" name=".menu_tv[state='1']"><![CDATA[padding: 0px 0px 0px 0px; background-image: url(menu_tv_on.png); color: White; font-size: 12px; font-family: 'Verdana'; font-weight: normal; font-style: none; text-decoration: none; text-align: center; vertical-align: middle; display: table-cell; box-sizing: border-box; -webkit-box-sizing: border-box; -webkit-tap-highlight-color:rgba(0,0,0,0);]]></theme>
+    <theme type="button" name=".menu_pc[state='0']"><![CDATA[padding: 0px 0px 0px 0px; background-image: url(menu_pc_off.png); color: White; font-size: 12px; font-family: 'Verdana'; font-weight: normal; font-style: none; text-decoration: none; text-align: center; vertical-align: middle; display: table-cell; box-sizing: border-box; -webkit-box-sizing: border-box; -webkit-tap-highlight-color:rgba(0,0,0,0);]]></theme>
+    <theme type="button" name=".menu_pc[state='1']"><![CDATA[padding: 0px 0px 0px 0px; background-image: url(menu_pc_on.png); color: White; font-size: 12px; font-family: 'Verdana'; font-weight: normal; font-style: none; text-decoration: none; text-align: center; vertical-align: middle; display: table-cell; box-sizing: border-box; -webkit-box-sizing: border-box; -webkit-tap-highlight-color:rgba(0,0,0,0);]]></theme>
+    <theme type="button" name=".menu_playstation[state='0']"><![CDATA[padding: 0px 0px 0px 0px; background-image: url(menu_playstation_off.png); color: White; font-size: 12px; font-family: 'Verdana'; font-weight: normal; font-style: none; text-decoration: none; text-align: center; vertical-align: middle; display: table-cell; box-sizing: border-box; -webkit-box-sizing: border-box; -webkit-tap-highlight-color:rgba(0,0,0,0);]]></theme>
+    <theme type="button" name=".menu_playstation[state='1']"><![CDATA[padding: 0px 0px 0px 0px; background-image: url(menu_playstation_on.png); color: White; font-size: 12px; font-family: 'Verdana'; font-weight: normal; font-style: none; text-decoration: none; text-align: center; vertical-align: middle; display: table-cell; box-sizing: border-box; -webkit-box-sizing: border-box; -webkit-tap-highlight-color:rgba(0,0,0,0);]]></theme>
+    <theme type="button" name=".menu_power[state='0']"><![CDATA[padding: 0px 0px 0px 0px; background-image: url(menu_power_off.png); color: White; font-size: 12px; font-family: 'Verdana'; font-weight: normal; font-style: none; text-decoration: none; text-align: center; vertical-align: middle; display: table-cell; box-sizing: border-box; -webkit-box-sizing: border-box; -webkit-tap-highlight-color:rgba(0,0,0,0);]]></theme>
+    <theme type="button" name=".menu_power[state='1']"><![CDATA[padding: 0px 0px 0px 0px; background-image: url(menu_power_on.png); color: White; font-size: 12px; font-family: 'Verdana'; font-weight: normal; font-style: none; text-decoration: none; text-align: center; vertical-align: middle; display: table-cell; box-sizing: border-box; -webkit-box-sizing: border-box; -webkit-tap-highlight-color:rgba(0,0,0,0);]]></theme>
+    <theme type="button" name=".led[state='0']"><![CDATA[padding: 0px 0px 0px 0px; background-image: url(led_off.png); color: White; font-size: 12px; font-family: 'Verdana'; font-weight: normal; font-style: none; text-decoration: none; text-align: center; vertical-align: middle; display: table-cell; box-sizing: border-box; -webkit-box-sizing: border-box; -webkit-tap-highlight-color:rgba(0,0,0,0);]]></theme>
+    <theme type="button" name=".led[state='1']"><![CDATA[padding: 0px 0px 0px 0px; background-image: url(led_on.png); color: White; font-size: 12px; font-family: 'Verdana'; font-weight: normal; font-style: none; text-decoration: none; text-align: center; vertical-align: middle; display: table-cell; box-sizing: border-box; -webkit-box-sizing: border-box; -webkit-tap-highlight-color:rgba(0,0,0,0);]]></theme>
+  </themes>
+  <page name="TV_HD" j="0" transition="None" subtype="None" time="0" ease="">
+    <portrait t="portrait">
+      <img x="143" y="8" w="166" h="45" j="0" clickthrough="0" refresh="0" l="1" noCache="0" downloadIndicator="0" clearOnURLChange="0">title_digitalTV.png</img>
+      <btn j="0" x="0" y="0" w="75" h="42" t="back" flip="Menu" sim="0" l="1" s="1">
+        <inactive s="0">
+        </inactive>
+        <active s="0">
+        </active>
+      </btn>
+      <btn j="0" x="246" y="41" w="56" h="56" t="pwr" flip="None" sim="1" l="0" s="1" macro="PowerTog">
+        <inactive s="0">
+        </inactive>
+        <active s="0">
+        </active>
+      </btn>
+      <btn j="0" x="45" y="103" w="96" h="68" t="btn" flip="None" sim="1" l="0" s="0" cmd="CH 7 HD">
+        <inactive s="0">
+          <img x="0" y="0" w="96" h="68">tv_7_hd.png</img>
+        </inactive>
+        <active s="0">
+          <img x="0" y="2" w="96" h="68">tv_7_hd.png</img>
+        </active>
+      </btn>
+      <btn j="0" x="165" y="103" w="96" h="68" t="btn" flip="None" sim="1" l="0" s="0" cmd="CH 9 HD">
+        <inactive s="0">
+          <img x="0" y="0" w="96" h="68">tv_9_hd.png</img>
+        </inactive>
+        <active s="0">
+          <img x="0" y="2" w="96" h="68">tv_9_hd.png</img>
+        </active>
+      </btn>
+      <btn j="0" x="104" y="183" w="96" h="68" t="btn" flip="None" sim="1" l="0" s="0" cmd="CH ONE HD">
+        <inactive s="0">
+          <img x="0" y="0" w="96" h="68">tv_one_hd.png</img>
+        </inactive>
+        <active s="0">
+          <img x="0" y="2" w="96" h="68">tv_one_hd.png</img>
+        </active>
+      </btn>
+      <img x="75" y="49" w="75" h="48" j="0" clickthrough="0" refresh="0" l="0" noCache="0" downloadIndicator="0" clearOnURLChange="0">tv_hd_on.png</img>
+      <img x="150" y="49" w="75" h="48" j="0" clickthrough="0" refresh="0" l="0" noCache="0" downloadIndicator="0" clearOnURLChange="0">tv_sd_off.png</img>
+      <btn j="0" x="150" y="48" w="77" h="50" t="blank" flip="TV_SD" sim="0" l="0" s="1">
+        <inactive s="0">
+        </inactive>
+        <active s="0">
+        </active>
+      </btn>
+      <btn j="0" x="45" y="263" w="96" h="68" t="btn" flip="None" sim="1" l="0" s="0" cmd="CH ABC HD">
+        <inactive s="0">
+          <img x="0" y="0" w="96" h="68">tv_abc1.png</img>
+        </inactive>
+        <active s="0">
+          <img x="0" y="2" w="96" h="68">tv_abc1.png</img>
+        </active>
+      </btn>
+      <btn j="0" x="165" y="263" w="96" h="68" t="btn" flip="None" sim="1" l="0" s="0" cmd="CH SBS HD">
+        <inactive s="0">
+          <img x="0" y="0" w="96" h="68">tv_sbs.png</img>
+        </inactive>
+        <active s="0">
+          <img x="0" y="2" w="96" h="68">tv_sbs.png</img>
+        </active>
+      </btn>
+      <img x="2" y="452" w="25" h="23" j="0" clickthrough="0" refresh="0" l="1" noCache="0" downloadIndicator="0" clearOnURLChange="0">rotate.png</img>
+      <btn j="998" x="196" y="401" w="74" h="46" t="btn_sml" flip="None" sim="0" l="0" s="0" macro="Mute">
+        <inactive s="0">MUTE
+ON</inactive>
+        <active s="0">MUTE
+OFF</active>
+      </btn>
+      <btn j="0" x="116" y="401" w="74" h="46" t="btn_sml" flip="None" sim="1" l="0" s="0" macro="Vol Up" repeatdelay="200">
+        <inactive s="0">
+          <img x="20" y="7" w="32" h="32">transports_sml_13_wht.png</img>
+        </inactive>
+        <active s="0">
+          <img x="20" y="8" w="32" h="32">transports_sml_13_blk.png</img>
+        </active>
+      </btn>
+      <btn j="0" x="36" y="401" w="74" h="46" t="btn_sml" flip="None" sim="1" l="0" s="0" macro="Vol Down" repeatdelay="200">
+        <inactive s="0">
+          <img x="20" y="6" w="32" h="32">transports_sml_11_wht.png</img>
+        </inactive>
+        <active s="0">
+          <img x="20" y="8" w="32" h="32">transports_sml_11_blk.png</img>
+        </active>
+      </btn>
+      <img x="273" y="413" w="26" h="26" j="0" clickthrough="0" refresh="0" l="0" noCache="0" downloadIndicator="0" clearOnURLChange="0">vol.png</img>
+      <btn j="999" x="1" y="32" w="42" h="42" t="led" flip="None" sim="0" l="0" s="1">
+        <inactive s="0">
+        </inactive>
+        <active s="0">
+        </active>
+      </btn>
+      <slider j="1" d="1" x="45" y="446" w="212" h="32" min="0" max="100" decimals="0" pressCmd="Set Volume" dragCmd="Set Volume" releaseCmd="Set Volume" unit="hexstring" t="horizontal" sim="1" l="0" />
+    </portrait>
+    <landscape t="landscape">
+      <img x="228" y="116" w="157" h="157" j="0" clickthrough="0" refresh="0" l="0" noCache="0" downloadIndicator="0" clearOnURLChange="0">arrow_off_bg.png</img>
+      <img x="2" y="297" w="25" h="23" j="0" clickthrough="0" refresh="0" l="1" noCache="0" downloadIndicator="0" clearOnURLChange="0">rotate.png</img>
+      <btn j="0" x="390" y="255" w="74" h="46" t="btn_sml" flip="None" sim="1" l="0" s="0" cmd="Mute Toggle">
+        <inactive s="0">
+          <img x="20" y="7" w="32" h="32">transports_sml_15_wht.png</img>
+        </inactive>
+        <active s="0">
+          <img x="20" y="8" w="32" h="32">transports_sml_15_blk.png</img>
+        </active>
+      </btn>
+      <btn j="0" x="390" y="154" w="74" h="46" t="btn_sml" flip="None" sim="1" l="0" s="0" cmd="Volume Up" repeatdelay="500">
+        <inactive s="0">
+          <img x="20" y="7" w="32" h="32">transports_sml_13_wht.png</img>
+        </inactive>
+        <active s="0">
+          <img x="20" y="8" w="32" h="32">transports_sml_13_blk.png</img>
+        </active>
+      </btn>
+      <btn j="0" x="390" y="204" w="74" h="46" t="btn_sml" flip="None" sim="1" l="0" s="0" cmd="Volume Down" repeatdelay="500">
+        <inactive s="0">
+          <img x="20" y="6" w="32" h="32">transports_sml_11_wht.png</img>
+        </inactive>
+        <active s="0">
+          <img x="20" y="8" w="32" h="32">transports_sml_11_blk.png</img>
+        </active>
+      </btn>
+      <img x="414" y="123" w="26" h="26" j="0" clickthrough="0" refresh="0" l="0" noCache="0" downloadIndicator="0" clearOnURLChange="0">vol.png</img>
+      <img x="301" y="14" w="166" h="45" j="0" clickthrough="0" refresh="0" l="1" noCache="0" downloadIndicator="0" clearOnURLChange="0">title_digitalTV.png</img>
+      <btn j="0" x="399" y="51" w="56" h="56" t="pwr" flip="None" sim="1" l="0" s="1" cmd="Power Toggle">
+        <inactive s="0">
+        </inactive>
+        <active s="0">
+        </active>
+      </btn>
+      <btn j="0" x="15" y="49" w="74" h="46" t="btn_sml" flip="None" sim="1" l="0" s="1" cmd="TV Num 1">
+        <inactive s="0">1</inactive>
+        <active s="0">1</active>
+      </btn>
+      <btn j="0" x="85" y="49" w="74" h="46" t="btn_sml" flip="None" sim="1" l="0" s="1" cmd="TV Num 2">
+        <inactive s="0">2</inactive>
+        <active s="0">2</active>
+      </btn>
+      <btn j="0" x="155" y="49" w="74" h="46" t="btn_sml" flip="None" sim="1" l="0" s="1" cmd="TV Num 3">
+        <inactive s="0">3</inactive>
+        <active s="0">3</active>
+      </btn>
+      <btn j="0" x="15" y="89" w="74" h="46" t="btn_sml" flip="None" sim="1" l="0" s="1" cmd="TV Num 4">
+        <inactive s="0">4</inactive>
+        <active s="0">4</active>
+      </btn>
+      <btn j="0" x="85" y="89" w="74" h="46" t="btn_sml" flip="None" sim="1" l="0" s="1" cmd="TV Num 5">
+        <inactive s="0">5</inactive>
+        <active s="0">5</active>
+      </btn>
+      <btn j="0" x="155" y="89" w="74" h="46" t="btn_sml" flip="None" sim="1" l="0" s="1" cmd="TV Num 6">
+        <inactive s="0">6</inactive>
+        <active s="0">6</active>
+      </btn>
+      <btn j="0" x="15" y="129" w="74" h="46" t="btn_sml" flip="None" sim="1" l="0" s="1" cmd="TV Num 7">
+        <inactive s="0">7</inactive>
+        <active s="0">7</active>
+      </btn>
+      <btn j="0" x="85" y="129" w="74" h="46" t="btn_sml" flip="None" sim="1" l="0" s="1" cmd="TV Num 8">
+        <inactive s="0">8</inactive>
+        <active s="0">8</active>
+      </btn>
+      <btn j="0" x="155" y="129" w="74" h="46" t="btn_sml" flip="None" sim="1" l="0" s="1" cmd="TV Num 9">
+        <inactive s="0">9</inactive>
+        <active s="0">9</active>
+      </btn>
+      <btn j="0" x="44" y="215" w="74" h="46" t="btn_sml" flip="None" sim="1" l="0" s="1" cmd="TV Menu">
+        <inactive s="0">MENU</inactive>
+        <active s="0">MENU</active>
+      </btn>
+      <btn j="0" x="85" y="169" w="74" h="46" t="btn_sml" flip="None" sim="1" l="0" s="1" cmd="TV Num 0">
+        <inactive s="0">0</inactive>
+        <active s="0">0</active>
+      </btn>
+      <btn j="0" x="126" y="215" w="74" h="46" t="btn_sml" flip="None" sim="1" l="0" s="1" cmd="TV Guide">
+        <inactive s="0">GUIDE</inactive>
+        <active s="0">GUIDE</active>
+      </btn>
+      <btn j="0" x="44" y="258" w="74" h="46" t="btn_sml" flip="None" sim="1" l="0" s="1" cmd="TV Exit">
+        <inactive s="0">EXIT</inactive>
+        <active s="0">EXIT</active>
+      </btn>
+      <btn j="0" x="126" y="258" w="74" h="46" t="btn_sml" flip="None" sim="1" l="0" s="1" cmd="TV Info">
+        <inactive s="0">INFO</inactive>
+        <active s="0">INFO</active>
+      </btn>
+      <btn j="0" x="285" y="204" w="35" h="69" t="arrow_down" flip="None" sim="1" l="0" s="1" cmd="Arrow Down" repeatdelay="500">
+        <inactive s="0">
+        </inactive>
+        <active s="0">
+        </active>
+      </btn>
+      <btn j="0" x="228" y="171" w="57" h="33" t="arrow_left" flip="None" sim="1" l="0" s="1" cmd="Arrow Left" repeatdelay="500">
+        <inactive s="0">
+        </inactive>
+        <active s="0">
+        </active>
+      </btn>
+      <btn j="0" x="285" y="116" w="35" h="55" t="arrow_up" flip="None" sim="1" l="0" s="1" cmd="Arrow Up" repeatdelay="500">
+        <inactive s="0">
+        </inactive>
+        <active s="0">
+        </active>
+      </btn>
+      <btn j="0" x="320" y="171" w="65" h="33" t="arrow_right" flip="None" sim="1" l="0" s="1" cmd="Arrow Right" repeatdelay="500">
+        <inactive s="0">
+        </inactive>
+        <active s="0">
+        </active>
+      </btn>
+      <btn j="0" x="264" y="261" w="74" h="46" t="btn_sml" flip="None" sim="1" l="0" s="1" cmd="Arrow OK">
+        <inactive s="0">OK</inactive>
+        <active s="0">OK</active>
+      </btn>
+      <btn j="0" x="0" y="2" w="75" h="42" t="back" flip="Menu" sim="1" l="1" s="1">
+        <inactive s="0">
+        </inactive>
+        <active s="0">
+        </active>
+      </btn>
+    </landscape>
+  </page>
+  <page name="Menu" j="0" transition="moveIn" subtype="fromLeft" time="0.5" ease="easeIn" start="1">
+    <portrait t="portrait">
+      <img x="143" y="8" w="166" h="45" j="0" clickthrough="0" refresh="0" l="1" noCache="0" downloadIndicator="0" clearOnURLChange="0">title_menu.png</img>
+      <btn j="999" x="267" y="111" w="42" h="42" t="led" flip="None" sim="0" l="0" s="1">
+        <inactive s="0">
+        </inactive>
+        <active s="0">
+        </active>
+      </btn>
+      <btn j="0" x="43" y="98" w="234" h="66" t="btn_lrg" flip="TV_HD" sim="1" l="0" s="1" macro="DigitalTV">
+        <inactive s="0">Digital TV<img x="-10" y="-10" w="68" h="59">icon_tv.png</img></inactive>
+        <active s="0">Digital TV<img x="-10" y="-10" w="68" h="59">icon_tv.png</img></active>
+      </btn>
+      <btn j="0" x="43" y="178" w="234" h="66" t="btn_lrg" flip="None" sim="1" l="0" s="1" macro="PC">
+        <inactive s="0">Computer<img x="-5" y="-10" w="51" h="70">icon_pc.png</img></inactive>
+        <active s="0">Computer<img x="-5" y="-10" w="51" h="70">icon_pc.png</img></active>
+      </btn>
+      <btn j="0" x="43" y="258" w="234" h="66" t="btn_lrg" flip="None" sim="1" l="0" s="1" macro="Nintendo">
+        <inactive s="0">Nintendo Wii</inactive>
+        <active s="0">Nintendo Wii</active>
+      </btn>
+      <btn j="0" x="43" y="338" w="234" h="66" t="btn_lrg" flip="None" sim="1" l="0" s="0" cmd="Plasma Off">
+        <inactive s="0">System Off<img x="-10" y="-10" w="56" h="56">pwr_off.png</img></inactive>
+        <active s="0">pwr_off.png<img x="-10" y="-8" w="56" h="56">pwr_off.png</img></active>
+      </btn>
+    </portrait>
+    <landscape t="landscape" />
+  </page>
+  <page name="TV_SD" j="0" transition="None" subtype="None" time="0" ease="">
+    <portrait t="portrait">
+      <btn j="999" x="1" y="32" w="42" h="42" t="led" flip="None" sim="0" l="0" s="1">
+        <inactive s="0">
+        </inactive>
+        <active s="0">
+        </active>
+      </btn>
+      <img x="143" y="8" w="166" h="45" j="0" clickthrough="0" refresh="0" l="1" noCache="0" downloadIndicator="0" clearOnURLChange="0">title_digitalTV.png</img>
+      <btn j="0" x="0" y="0" w="75" h="42" t="back" flip="Menu" sim="0" l="1" s="1">
+        <inactive s="0">
+        </inactive>
+        <active s="0">
+        </active>
+      </btn>
+      <btn j="0" x="246" y="41" w="56" h="56" t="pwr" flip="None" sim="1" l="0" s="1" macro="PowerTog">
+        <inactive s="0">
+        </inactive>
+        <active s="0">
+        </active>
+      </btn>
+      <btn j="0" x="59" y="103" w="96" h="68" t="btn" flip="None" sim="1" l="0" s="0" cmd="CH 7">
+        <inactive s="0">
+          <img x="0" y="0" w="96" h="68">tv_7.png</img>
+        </inactive>
+        <active s="0">
+          <img x="0" y="2" w="96" h="68">tv_7.png</img>
+        </active>
+      </btn>
+      <btn j="0" x="59" y="173" w="96" h="68" t="btn" flip="None" sim="1" l="0" s="0" cmd="CH 9">
+        <inactive s="0">
+          <img x="0" y="0" w="96" h="68">tv_9.png</img>
+        </inactive>
+        <active s="0">
+          <img x="0" y="2" w="96" h="68">tv_9.png</img>
+        </active>
+      </btn>
+      <btn j="0" x="159" y="173" w="96" h="68" t="btn" flip="None" sim="1" l="0" s="0" cmd="CH GO">
+        <inactive s="0">
+          <img x="0" y="0" w="96" h="68">tv_go.png</img>
+        </inactive>
+        <active s="0">
+          <img x="0" y="2" w="96" h="68">tv_go.png</img>
+        </active>
+      </btn>
+      <btn j="0" x="209" y="243" w="96" h="68" t="btn" flip="None" sim="1" l="0" s="0" cmd="CH SBS">
+        <inactive s="0">
+          <img x="0" y="0" w="96" h="68">tv_sbs.png</img>
+        </inactive>
+        <active s="0">
+          <img x="0" y="2" w="96" h="68">tv_sbs.png</img>
+        </active>
+      </btn>
+      <img x="75" y="49" w="75" h="48" j="0" clickthrough="0" refresh="0" l="0" noCache="0" downloadIndicator="0" clearOnURLChange="0">tv_hd_off.png</img>
+      <img x="150" y="49" w="75" h="48" j="0" clickthrough="0" refresh="0" l="0" noCache="0" downloadIndicator="0" clearOnURLChange="0">tv_sd_on.png</img>
+      <btn j="0" x="73" y="48" w="77" h="50" t="blank" flip="TV_HD" sim="0" l="0" s="1">
+        <inactive s="0">
+        </inactive>
+        <active s="0">
+        </active>
+      </btn>
+      <img x="2" y="452" w="25" h="23" j="0" clickthrough="0" refresh="0" l="1" noCache="0" downloadIndicator="0" clearOnURLChange="0">rotate.png</img>
+      <btn j="998" x="196" y="401" w="74" h="46" t="btn_sml" flip="None" sim="0" l="0" s="0" macro="Mute">
+        <inactive s="0">MUTE
+ON</inactive>
+        <active s="0">MUTE
+OFF</active>
+      </btn>
+      <btn j="0" x="116" y="401" w="74" h="46" t="btn_sml" flip="None" sim="1" l="0" s="0" macro="Vol Up" repeatdelay="200">
+        <inactive s="0">
+          <img x="20" y="7" w="32" h="32">transports_sml_13_wht.png</img>
+        </inactive>
+        <active s="0">
+          <img x="20" y="8" w="32" h="32">transports_sml_13_blk.png</img>
+        </active>
+      </btn>
+      <btn j="0" x="36" y="401" w="74" h="46" t="btn_sml" flip="None" sim="1" l="0" s="0" macro="Vol Down" repeatdelay="200">
+        <inactive s="0">
+          <img x="20" y="6" w="32" h="32">transports_sml_11_wht.png</img>
+        </inactive>
+        <active s="0">
+          <img x="20" y="8" w="32" h="32">transports_sml_11_blk.png</img>
+        </active>
+      </btn>
+      <img x="273" y="413" w="26" h="26" j="0" clickthrough="0" refresh="0" l="0" noCache="0" downloadIndicator="0" clearOnURLChange="0">vol.png</img>
+      <slider j="1" d="1" x="45" y="446" w="212" h="32" min="0" max="100" decimals="0" pressCmd="Set Volume" dragCmd="Set Volume" releaseCmd="Set Volume" unit="hexstring" t="horizontal" sim="1" l="0" />
+      <btn j="0" x="159" y="103" w="96" h="68" t="btn" flip="None" sim="1" l="0" s="0" cmd="CH 7TWO">
+        <inactive s="0">
+          <img x="0" y="0" w="96" h="68">tv_72.png</img>
+        </inactive>
+        <active s="0">
+          <img x="0" y="2" w="96" h="68">tv_72.png</img>
+        </active>
+      </btn>
+      <btn j="0" x="209" y="313" w="96" h="68" t="btn" flip="None" sim="1" l="0" s="0" cmd="CH SBS 2">
+        <inactive s="0">
+          <img x="0" y="0" w="96" h="68">tv_sbs_news.png</img>
+        </inactive>
+        <active s="0">
+          <img x="0" y="2" w="96" h="68">tv_sbs_news.png</img>
+        </active>
+      </btn>
+      <btn j="0" x="109" y="313" w="96" h="68" t="btn" flip="None" sim="1" l="0" s="0" cmd="CH ABC2">
+        <inactive s="0">
+          <img x="0" y="0" w="96" h="68">tv_abc2.png</img>
+        </inactive>
+        <active s="0">
+          <img x="0" y="2" w="96" h="68">tv_abc2.png</img>
+        </active>
+      </btn>
+      <btn j="0" x="9" y="313" w="96" h="68" t="btn" flip="None" sim="1" l="0" s="0" cmd="CH ABC1">
+        <inactive s="0">
+          <img x="0" y="0" w="96" h="68">tv_abc1.png</img>
+        </inactive>
+        <active s="0">
+          <img x="0" y="2" w="96" h="68">tv_abc1.png</img>
+        </active>
+      </btn>
+      <btn j="0" x="109" y="243" w="96" h="68" t="btn" flip="None" sim="1" l="0" s="0" cmd="CH ONE SD">
+        <inactive s="0">
+          <img x="0" y="0" w="96" h="68">tv_one_hd.png</img>
+        </inactive>
+        <active s="0">
+          <img x="0" y="2" w="96" h="68">tv_one_hd.png</img>
+        </active>
+      </btn>
+      <btn j="0" x="9" y="243" w="96" h="68" t="btn" flip="None" sim="1" l="0" s="0" cmd="CH 10">
+        <inactive s="0">
+          <img x="0" y="0" w="96" h="68">tv_10.png</img>
+        </inactive>
+        <active s="0">
+          <img x="0" y="2" w="96" h="68">tv_10.png</img>
+        </active>
+      </btn>
+    </portrait>
+    <landscape t="landscape">
+      <img x="228" y="116" w="157" h="157" j="0" clickthrough="0" refresh="0" l="0" noCache="0" downloadIndicator="0" clearOnURLChange="0">arrow_off_bg.png</img>
+      <img x="2" y="297" w="25" h="23" j="0" clickthrough="0" refresh="0" l="1" noCache="0" downloadIndicator="0" clearOnURLChange="0">rotate.png</img>
+      <btn j="0" x="390" y="255" w="74" h="46" t="btn_sml" flip="None" sim="1" l="0" s="0" cmd="Mute Toggle">
+        <inactive s="0">
+          <img x="20" y="7" w="32" h="32">transports_sml_15_wht.png</img>
+        </inactive>
+        <active s="0">
+          <img x="20" y="8" w="32" h="32">transports_sml_15_blk.png</img>
+        </active>
+      </btn>
+      <btn j="0" x="390" y="154" w="74" h="46" t="btn_sml" flip="None" sim="1" l="0" s="0" cmd="Volume Up" repeatdelay="500">
+        <inactive s="0">
+          <img x="20" y="7" w="32" h="32">transports_sml_13_wht.png</img>
+        </inactive>
+        <active s="0">
+          <img x="20" y="8" w="32" h="32">transports_sml_13_blk.png</img>
+        </active>
+      </btn>
+      <btn j="0" x="390" y="204" w="74" h="46" t="btn_sml" flip="None" sim="1" l="0" s="0" cmd="Volume Down" repeatdelay="500">
+        <inactive s="0">
+          <img x="20" y="6" w="32" h="32">transports_sml_11_wht.png</img>
+        </inactive>
+        <active s="0">
+          <img x="20" y="8" w="32" h="32">transports_sml_11_blk.png</img>
+        </active>
+      </btn>
+      <img x="414" y="123" w="26" h="26" j="0" clickthrough="0" refresh="0" l="0" noCache="0" downloadIndicator="0" clearOnURLChange="0">vol.png</img>
+      <img x="301" y="14" w="166" h="45" j="0" clickthrough="0" refresh="0" l="1" noCache="0" downloadIndicator="0" clearOnURLChange="0">title_digitalTV.png</img>
+      <btn j="0" x="399" y="51" w="56" h="56" t="pwr" flip="None" sim="1" l="0" s="1" cmd="Power Toggle">
+        <inactive s="0">
+        </inactive>
+        <active s="0">
+        </active>
+      </btn>
+      <btn j="0" x="15" y="49" w="74" h="46" t="btn_sml" flip="None" sim="1" l="0" s="1" cmd="TV Num 1">
+        <inactive s="0">1</inactive>
+        <active s="0">1</active>
+      </btn>
+      <btn j="0" x="85" y="49" w="74" h="46" t="btn_sml" flip="None" sim="1" l="0" s="1" cmd="TV Num 2">
+        <inactive s="0">2</inactive>
+        <active s="0">2</active>
+      </btn>
+      <btn j="0" x="155" y="49" w="74" h="46" t="btn_sml" flip="None" sim="1" l="0" s="1" cmd="TV Num 3">
+        <inactive s="0">3</inactive>
+        <active s="0">3</active>
+      </btn>
+      <btn j="0" x="15" y="89" w="74" h="46" t="btn_sml" flip="None" sim="1" l="0" s="1" cmd="TV Num 4">
+        <inactive s="0">4</inactive>
+        <active s="0">4</active>
+      </btn>
+      <btn j="0" x="85" y="89" w="74" h="46" t="btn_sml" flip="None" sim="1" l="0" s="1" cmd="TV Num 5">
+        <inactive s="0">5</inactive>
+        <active s="0">5</active>
+      </btn>
+      <btn j="0" x="155" y="89" w="74" h="46" t="btn_sml" flip="None" sim="1" l="0" s="1" cmd="TV Num 6">
+        <inactive s="0">6</inactive>
+        <active s="0">6</active>
+      </btn>
+      <btn j="0" x="15" y="129" w="74" h="46" t="btn_sml" flip="None" sim="1" l="0" s="1" cmd="TV Num 7">
+        <inactive s="0">7</inactive>
+        <active s="0">7</active>
+      </btn>
+      <btn j="0" x="85" y="129" w="74" h="46" t="btn_sml" flip="None" sim="1" l="0" s="1" cmd="TV Num 8">
+        <inactive s="0">8</inactive>
+        <active s="0">8</active>
+      </btn>
+      <btn j="0" x="155" y="129" w="74" h="46" t="btn_sml" flip="None" sim="1" l="0" s="1" cmd="TV Num 9">
+        <inactive s="0">9</inactive>
+        <active s="0">9</active>
+      </btn>
+      <btn j="0" x="44" y="215" w="74" h="46" t="btn_sml" flip="None" sim="1" l="0" s="1" cmd="TV Menu">
+        <inactive s="0">MENU</inactive>
+        <active s="0">MENU</active>
+      </btn>
+      <btn j="0" x="85" y="169" w="74" h="46" t="btn_sml" flip="None" sim="1" l="0" s="1" cmd="TV Num 0">
+        <inactive s="0">0</inactive>
+        <active s="0">0</active>
+      </btn>
+      <btn j="0" x="126" y="215" w="74" h="46" t="btn_sml" flip="None" sim="1" l="0" s="1" cmd="TV Guide">
+        <inactive s="0">GUIDE</inactive>
+        <active s="0">GUIDE</active>
+      </btn>
+      <btn j="0" x="44" y="258" w="74" h="46" t="btn_sml" flip="None" sim="1" l="0" s="1" cmd="TV Exit">
+        <inactive s="0">EXIT</inactive>
+        <active s="0">EXIT</active>
+      </btn>
+      <btn j="0" x="126" y="258" w="74" h="46" t="btn_sml" flip="None" sim="1" l="0" s="1" cmd="TV Info">
+        <inactive s="0">INFO</inactive>
+        <active s="0">INFO</active>
+      </btn>
+      <btn j="0" x="285" y="204" w="35" h="69" t="arrow_down" flip="None" sim="1" l="0" s="1" cmd="Arrow Down" repeatdelay="500">
+        <inactive s="0">
+        </inactive>
+        <active s="0">
+        </active>
+      </btn>
+      <btn j="0" x="228" y="171" w="57" h="33" t="arrow_left" flip="None" sim="1" l="0" s="1" cmd="Arrow Left" repeatdelay="500">
+        <inactive s="0">
+        </inactive>
+        <active s="0">
+        </active>
+      </btn>
+      <btn j="0" x="285" y="116" w="35" h="55" t="arrow_up" flip="None" sim="1" l="0" s="1" cmd="Arrow Up" repeatdelay="500">
+        <inactive s="0">
+        </inactive>
+        <active s="0">
+        </active>
+      </btn>
+      <btn j="0" x="320" y="171" w="65" h="33" t="arrow_right" flip="None" sim="1" l="0" s="1" cmd="Arrow Right" repeatdelay="500">
+        <inactive s="0">
+        </inactive>
+        <active s="0">
+        </active>
+      </btn>
+      <btn j="0" x="264" y="261" w="74" h="46" t="btn_sml" flip="None" sim="1" l="0" s="1" cmd="Arrow OK">
+        <inactive s="0">OK</inactive>
+        <active s="0">OK</active>
+      </btn>
+      <btn j="0" x="0" y="2" w="75" h="42" t="back" flip="Menu" sim="1" l="1" s="1">
+        <inactive s="0">
+        </inactive>
+        <active s="0">
+        </active>
+      </btn>
+    </landscape>
+  </page>
+  <page name="Menu_copy" j="0" transition="moveIn" subtype="fromLeft" time="0.5" ease="easeIn">
+    <portrait t="portrait">
+      <img x="143" y="8" w="166" h="45" j="0" clickthrough="0" refresh="0" l="1" noCache="0" downloadIndicator="0" clearOnURLChange="0">title_menu.png</img>
+      <btn j="0" x="39" y="103" w="234" h="66" t="btn_lrg" flip="TV_HD" sim="1" l="0" s="1">
+        <inactive s="0">Digital TV<img x="-10" y="-10" w="68" h="59">icon_tv.png</img></inactive>
+        <active s="0">Digital TV<img x="-10" y="-10" w="68" h="59">icon_tv.png</img></active>
+      </btn>
+      <btn j="0" x="39" y="183" w="234" h="66" t="btn_lrg" flip="None" sim="1" l="0" s="1" macro="PC">
+        <inactive s="0">PC<img x="-5" y="-10" w="51" h="70">icon_pc.png</img></inactive>
+        <active s="0">PC<img x="-5" y="-10" w="51" h="70">icon_pc.png</img></active>
+      </btn>
+      <btn j="0" x="39" y="263" w="234" h="66" t="btn_lrg" flip="None" sim="1" l="0" s="1" macro="Nintendo">
+        <inactive s="0">Playstation<img x="-18" y="-10" w="80" h="66">icon_playstation.png</img></inactive>
+        <active s="0">Playstation<img x="-18" y="-10" w="80" h="66">icon_playstation.png</img></active>
+      </btn>
+      <btn j="0" x="39" y="343" w="234" h="66" t="btn_lrg" flip="None" sim="1" l="0" s="0" cmd="Plasma Off">
+        <inactive s="0">System Off<img x="-10" y="-10" w="56" h="56">pwr_off.png</img></inactive>
+        <active s="0">pwr_off.png<img x="-10" y="-8" w="56" h="56">pwr_off.png</img></active>
+      </btn>
+      <btn j="2" x="0" y="0" w="75" h="42" t="back" flip="Menu" sim="0" l="1" s="1">
+        <inactive s="0">
+        </inactive>
+        <active s="0">
+        </active>
+      </btn>
+      <txt j="11" x="20" y="418" w="276" h="34" t="info_center" wrap="False" l="0">Text</txt>
+    </portrait>
+    <landscape t="landscape" />
+  </page>
+</gui>

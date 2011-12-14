@@ -4,21 +4,19 @@
    Additional coding by Jarrod Bell
 
 ## Overview
+
 This project allows for control of LG TV's via RS232 using CommandFusion software and any Serial to Ethernet converter.
 
-The project is split into 3 parts:
+There are two examples for LG TV control:
 
-1. [iViewer JavaScript file](#js)
-1. [CF iViewer Project](#iviewer)
+1. Uses basic feedback processing and commands, but is not a complete implementation of the LG Protocol.
+2. Uses JavaScript, coded by Darren Vollmer, and is a complete implementation.
 
-### <a name="js" />iViewer JavaScript File
-We have developed a JavaScript file for iViewer that handles all the RS232 communication with the TV.
+Use whichever you are more comfortable with, and whichever suits your needs.
 
-### <a name="iviewer" />CF iViewer Project
-To go along with the [JavaScript file](#js), we have created a sample iViewer project.  
+## Advanced JavaScript Version
+
+Included is a JavaScript file for iViewer that handles all the RS232 communication with the TV.
+
+To go along with the JavaScript file, there is also a sample iViewer project.  
 This project should be used as a reference on how to call the JavaScript functions in your own project and how to setup the System Properties.
-
-## More Information
-See the [wiki] for more information.
-
-[wiki]: http://github.com/CommandFusion/LG-TV-RS232/wiki
